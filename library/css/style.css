@@ -383,6 +383,167 @@ h2 {
 }
 
 /*********************/
+.cards__wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 344px;
+    padding: 40px 0;
+}
+
+.find__form_name{
+    padding-left: 138px;
+    padding-bottom: 30px;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.6px; 
+}
+
+.find__form{
+    width: 600px;
+    height: 386px; 
+    border: 3px solid #BB945F;
+    background: #FFF; 
+}
+
+.find__form_fields {
+    width: 560px;
+    height: 272px; 
+    margin: 20px;
+    background: #BB945F; 
+ }
+
+.find__form_label{
+    padding: 20px;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px; /* 166.667% */
+    letter-spacing: 0.6px; 
+}
+
+.find__form_readername{
+    margin: 0 20px;
+    width: 520px;
+    height: 66px;  
+    border-radius: 10px;
+    background: #FFF; 
+    padding: 8px 20px;
+    color: #8E8E8E;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px; /* 166.667% */
+    letter-spacing: 0.6px;
+}
+
+.find__form_cardnumber{
+    margin: 25px 20px;
+    width: 520px;
+    height: 66px;
+    border-radius: 10px;
+    background: #FFF; 
+    padding: 8px 20px;
+    color: #8E8E8E;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px; /* 166.667% */
+    letter-spacing: 0.6px;
+}  
+
+
+.find__form_submitbox{
+   padding: 0px 179px 30px 179px;
+} 
+
+.find__form_submit{
+    width: 242px;
+    height: 44px;
+    border-radius: 2px;
+    border: 1px solid #0C0C0E; 
+    background: transparent;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px; 
+} 
+
+.find__form_submit:hover, .find__form_submit:focus, .find__form_submit:active{
+    background: #BB945F;
+    border: 1px solid #BB945F;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.get__form_fields {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: right;
+}
+
+.get__form_name{
+    padding-bottom: 35px;
+    text-align: right;
+    font-family: Forum;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.6px; 
+}
+
+.get__form_label{
+    padding-bottom: 35px;
+    text-align: right;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px; /* 200% */
+    letter-spacing: 0.4px; 
+}
+
+.get__form_box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 20px;
+}
+
+.get__form_signup, .get__form_login{
+    width: 75px;
+    height: 30px;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px; 
+    background-color: transparent;
+    border-radius: 2px;
+    border: 1px solid #0C0C0E; 
+}
+
+.get__form_signup:hover, .get__form_signup:focus, .get__form_signup:active,
+.get__form_login:hover, .get__form_login:focus, .get__form_login:active
+{
+    background: #BB945F;
+    border: 1px solid #BB945F;
+    transition: 0.5s;
+    cursor: pointer;
+}
 
 /***********************/
 .footer {
