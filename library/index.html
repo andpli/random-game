@@ -48,7 +48,7 @@
   <main>
         <!-- Section WELCOME -->
         <section class="welcome" id="welcome">
-            <h2 class="welcome__text">Welcome<br> to the Brooklyn Library</h2>
+            <h2 class="welcome__text"><pre>Welcome </pre>to the Brooklyn Library</h2>
         </section>
         
         <!-- Section ABOUT -->
@@ -82,33 +82,26 @@
                 <h2 class="favorites__title">favorites</h2>
                 <div class="line"></div>
                 <h3 class="pick__season">Pick favorites of season</h3>
-                <fieldset> 
+                <fieldset>
                     <div class="seasons__set">
-                        <div class="season__item">
-                            <div class="season__radio_wrapper">
-                                <input class="season__input" type="radio" id="winter" name="season" value="winter">
-                            </div>
-                            <label for="winter" >Winter</label>
-                        </div>
-                        <div class="season__item">
-                            <div class="season__radio_wrapper">
-                                <input class="season__input" type="radio" id="spring" name="season" value="spring">
-                            </div>
-                            <label for="spring">Spring</label>
-                        </div>
-                        <div class="season__item">
-                            <div class="season__radio_wrapper">
-                                <input class="season__input" type="radio" id="summer" name="season" value="summer">
-                            </div>
-                            <label for="summer" >Summer</label>
-                        </div>
-                        <div class="season__item">
-                            <div class="season__radio_wrapper">
-                                <input class="season__input" type="radio" id="autumn" name="season" value="autumn">
-                            </div>
-                            <label for="autumn">Autumn</label>
-                        </div>
+                        <label class="label winter">
+                            <input class="season__input" type="radio" name="season" checked>
+                            <span class="season__span">Winter</span>
+                        </label>
+                        <label class="label spring">
+                            <input class="season__input" type="radio"  name="season">
+                            <span class="season__span">Spring</span>
+                        </label>
+                        <label class="label summer">
+                            <input class="season__input" type="radio"  name="season">
+                            <span class="season__span">Summer</span>
+                          </label>
+                        <label class="label autumn">
+                            <input class="season__input" type="radio" name="season">
+                            <span class="season__span">Autumn</span>
+                        </label>
                     </div>
+
                 </fieldset>
                 
                 <!-- Winter -->
