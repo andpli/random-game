@@ -109,11 +109,6 @@ a {
 }
 
 .header{
-   /* position: fixed; 
-    top: 0;
-    
-    width: 1440px; 
-  */
     background-color: #0C0C0E; 
 }
 
@@ -183,7 +178,7 @@ a {
 /**********************/
 
 .welcome {
-    height: 600px;
+    height: 598px;
     background-image:  linear-gradient(180deg, #0C0C0E 0%, #0C0C0E 0.01%, rgba(18, 18, 21, 0.10) 50%), url("../images/welcome.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -298,54 +293,82 @@ h2 {
     font-weight: 700;
     line-height: normal;  
 }
-
-.seasons__set {
+.seasons__set{
+    margin-top: -5px;
+    margin-bottom: -5px;
+    width: 716px;
     display: flex;
     flex-wrap: wrap;
-    gap: 85px; 
-    width: 700px;
+    gap: 78px;
     font-family: Inter;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
-
-.season__item{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.season__radio_wrapper{
-    position: relative;
-    width: 27px;
-    height: 24px; 
+  
+.label {
+    border: 5px solid #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
 .season__input {
-    accent-color: #000; 
+    display: none;
+}
+
+.season__span::before {
     position: absolute;
     top: 5px;
-    left: 5px;
+    left: -37px;
     width: 17px;
     height: 17px;
-    border: 0;
-    margin: 0;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    content: "";
+}
+  
+.season__span::after {
+    position: absolute;
+    top: 10px;
+    left: -32px;
+    opacity: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #000000;
+    content: "";
+}
+  
+.season__span {
+    margin-left: 32px;
+    position: relative;
 }
 
-.season__input:checked +label{
+.season__input:checked + .season__span::after {
+    opacity: 1;
+}
+  
+.season__input:checked + .season__span {
     font-weight: 700;
 }
-
-.season__radio_wrapper:active{
-   background: #BB945F;
+  
+.winter {
+    width: 115px;
 }
-
-.season__input:hover, .season__item:hover, label:hover{
-    cursor: pointer;
+  
+.spring {
+    width: 113px;
 }
-
+  
+.summer {
+    width: 127px;
+}
+  
+.autumn {
+    width: 127px;
+}
+  
 .favorites__set {
     display: flex;
     flex-wrap: wrap;
@@ -463,10 +486,11 @@ h2 {
 
 .favorites__book {
     position: absolute;
-   /* width: 200px;
-    height: 300px; */
+    width: 200px;
+    height: 300px; 
     left: 390px;
-    top: 255px;
+    top: 254px; 
+
 }
 
 /********************/
