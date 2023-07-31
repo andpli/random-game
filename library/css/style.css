@@ -607,7 +607,8 @@ h2 {
 }
 
 .mail__to:hover, .phone__to:hover{
-    color: #BB945F;;
+    color: #BB945F;
+    transition: 0.6s;
 }
 
 /*********************/
@@ -819,6 +820,7 @@ h2 {
 
 .footer__link:hover, .footer__link:focus, .footer__link:active{
     opacity: 0.75;
+    transition: 0.6s;
 }
 
 .footer__list{
@@ -846,5 +848,5 @@ h2 {
 
 .media__img:hover{
     transform: scale(110%);
-
+    transition: 0.2s;
 }
