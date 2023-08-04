@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <title>Brooklyn Public Library</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
@@ -14,11 +14,10 @@
      <div class="wrapper">
         <div class="header__wrapper">
             <div class="logo">
-                <a href="#" class="link__logo">
                   <h1 class="logo__text">Brooklyn Public Library</h1>
-                </a>
             </div> 
-            <nav class="header__nav">
+            <div class="header__container">
+                <nav class="header__nav">
               <ul class="header__list">
                   <li class="header__item">
                       <a href="#about" class="header__link">About</a>
@@ -36,13 +35,45 @@
                       <a href="#cards" class="header__link">Library Card</a>
                   </li>
               </ul>
-            </nav>
-            <div class="profile">
+                </nav>
+                <div class="profile">
                 <a href="#" class="profile__logo"> 
                      <img class="profile__img" src="images/svg/profile.svg" alt="profile">
                 </a> 
-            </div>            
+                </div>    
+            </div>    
+            <div class="header__container-burger">
+                <div class="profile">
+                <a href="#" class="profile__logo"> 
+                     <img class="profile__img" src="images/svg/profile.svg" alt="profile">
+                </a> 
+                </div>   
+                <div class="header__burger">
+                    <span></span>
+                </div> 
+            </div> 
+            <nav class="header__burger-menu">
+                <ul class="header__list">
+                    <li class="header__item">
+                        <a href="#about" class="header__link">About</a>
+                    </li> 
+                    <li class="header__item">
+                        <a href="#favorites" class="header__link">Favorites</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="#shop" class="header__link">Coffee shop</a>
+                    </li> 
+                    <li class="header__item">
+                       <a href="#contacts" class="header__link">Contacts</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="#cards" class="header__link">Library Card</a>
+                    </li>
+                </ul>
+            </nav>  
+        
         </div>
+
     </div>
   </header>
   <main>
@@ -64,10 +95,38 @@
                     <img src="images/image2.png" alt="img2">
                     <img src="images/image3.png" alt="img3">
                 </div>
+                <div class="about__set-tablet">
+                    <div class="arrows_container">
+                       <br><br><br>
+                       <img class="arrows" src="images/svg/left.svg" alt="left">
+                    </div>
+                    <img src="images/image1.png" alt="img1">
+                    <div class="arrows_container">
+                       <br><br><br>
+                       <img class="arrows" src="images/svg/right.svg" alt="right">
+                    </div>
+                </div>
                 <div class="carousel">
                     <div class="wrapper__circle">
                         <div class="circle__selected"></div>
                     </div>
+                    <div class="wrapper__circle">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="wrapper__circle">
+                        <div class="circle"></div>
+                    </div>                   
+                </div>
+                <div class="carousel__tablet">
+                    <div class="wrapper__circle">
+                        <div class="circle__selected"></div>
+                    </div>
+                    <div class="wrapper__circle">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="wrapper__circle">
+                        <div class="circle"></div>
+                    </div>   
                     <div class="wrapper__circle">
                         <div class="circle"></div>
                     </div>
@@ -403,7 +462,7 @@
                 <h2 class="shop__title">coffee shop</h2>
                 <div class="line"></div>
                 <p class="shop__text">In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. 
-                    <br> You can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts <br> from bakery.
+                    <br>You can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts<br>from bakery.
                 </p>
                 <div class="shop__set">
                     <div class="drink">
@@ -535,7 +594,7 @@
                     </form>
                     <form  class="get__card">
                          <p class="get__form_name">Get a reader card</p>
-                         <p class="get__form_label">You will be able to see a reader card after<br> logging into account or you can register a new<br> account</p> 
+                         <p class="get__form_label">You will be able to see a reader card after logging into account or you can register a new account</p> 
                          <div class="get__form_box">
                             <button class="get__form_signup" type="button">Sign Up</button>   
                             <button class="get__form_login" type="button">Log In</button>
@@ -584,5 +643,6 @@
             </div>
     
   </footer>
+  <script src="js/index.js"></script>
 </body>
 </html>
