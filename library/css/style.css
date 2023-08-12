@@ -196,10 +196,12 @@ img {
        display: none;
 }
 .header__burger-menu{
-    top: -100%;
+    top: 100px;
+    right: -1000px;
     display: block;
     position: fixed;
-    z-index: 20px;
+    z-index: 20;
+    transition: all 0.5s; 
   }
 
 @media  (max-width: 1024px) {
@@ -210,7 +212,8 @@ img {
  .header__container-burger{
     display: flex;
     gap: 40px;
-    z-index: 1;
+    position: relative;
+    z-index: 6;
   }
   
   .header__burger{
@@ -276,7 +279,7 @@ img {
     font-style: normal;
     font-weight: 400;
     line-height: 50px; 
-    background-color: #000;
+    background-color: #0C0C0E;
     width: 332px;
     height: 470px;
     position: fixed;
@@ -284,8 +287,8 @@ img {
     text-align: center;
     display: block;
     right: 0;
-    top: 80px;
-    transition: all 0.3s;
+    top: 100px;
+    transition: all 0.3s; 
   }
 
   .header__list{
@@ -298,6 +301,12 @@ img {
     margin-bottom: 30px;
  }
 }
+
+.sections{
+    position: relative;
+    z-index: 5;
+}
+
 
 
 /**********************/
@@ -373,7 +382,7 @@ h2 {
     display: none;
 }
 
-@media  (max-width: 768px) {
+@media  (max-width: 1440px) {
    .about__set{
         display: none;
     }
@@ -396,7 +405,7 @@ h2 {
     display: none;
 }
 
-@media  (max-width: 768px) {
+@media  (max-width: 1440px) {
     .carousel{
          display: none;
      }
@@ -465,7 +474,14 @@ h2 {
     font-weight: 400;
     line-height: normal;
 }
-  
+
+@media  (max-width: 750px) {
+    .seasons__set{
+        gap: 40px;
+    }
+
+}
+
 .label {
     border: 5px solid #FFFFFF;
     cursor: pointer;
@@ -537,9 +553,10 @@ h2 {
     padding: 40px 0;
 }
 
-@media  (max-width: 768px) {
+@media  (max-width: 1400px) {
     .favorites__set {
-        padding: 40px 0 40px 69px;
+       padding: 40px 40px 40px 0; 
+       justify-content: center;
     }
  }
 
@@ -668,7 +685,7 @@ h2 {
     font-weight: 400;
     line-height: 40px;
     padding-top: 40px;
-    letter-spacing: 2px; 
+    letter-spacing: 1.9px; 
 }
 .shop__set{
     display: flex;
@@ -684,7 +701,7 @@ h2 {
     letter-spacing: 2px;
     text-transform: capitalize; 
 }
-@media  (max-width: 768px) {
+@media  (max-width: 1000px) {
 .shop__set{
     padding: 40px 0; 
     color: #BB945F;
@@ -709,12 +726,22 @@ h2 {
     text-align: right;
   }
 
-  @media  (max-width: 768px) {
+  @media  (max-width: 1000px) {
     .food{
         display: inline-flex;
         flex-direction: column;
         text-align: right;
         padding-left: 260px;
+        padding-top: 40px;
+      }
+ } 
+
+ @media  (max-width: 750px) {
+    .food{
+        display: inline-flex;
+        flex-direction: column;
+        text-align: right;
+        padding-left: 140px;
         padding-top: 40px;
       }
  } 
@@ -774,7 +801,7 @@ h2 {
     text-transform: capitalize;     
 }
 
-@media  (max-width: 768px) {
+@media  (max-width: 1250px) {
     .contact__wrapper{
         display: block;
         padding: 40px 0 30px 0;
@@ -824,10 +851,24 @@ h2 {
     padding: 40px 0;
 }
 
-@media  (max-width: 768px) {
+@media  (max-width: 1440px) {
     .cards__wrapper{
         display: block;
         padding: 40px 65px;
+        gap: 0;
+    }
+ }
+
+ @media  (max-width: 750px) {
+    .cards__wrapper{
+        display: block;
+        padding: 40px 35px;
+        gap: 0;
+    }
+ }
+ @media  (max-width: 700px) {
+    .cards__wrapper{
+        padding: 40px 0;
     }
  }
 
@@ -964,7 +1005,7 @@ h2 {
     gap: 20px;
 }
 
-@media  (max-width: 768px) {
+@media  (max-width: 1440px) {
     .get__form_name {
         padding-top: 21px;
         padding-bottom: 38px;
