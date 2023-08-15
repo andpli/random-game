@@ -553,7 +553,7 @@ h2 {
     padding: 40px 0;
 }
 
-@media  (max-width: 1400px) {
+@media  (max-width: 1425px) {
     .favorites__set {
        padding: 40px 40px 40px 0; 
        justify-content: center;
