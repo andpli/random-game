@@ -7,6 +7,8 @@ const headerLink = document.querySelectorAll(".header__link");
 const circleWrapper = document.querySelectorAll(".wrapper__circle");
 const circle = document.querySelectorAll(".circle");
 const circleActive = document.querySelector(".circle.active");
+const label = document.querySelectorAll(".label");
+const favorites = document.querySelectorAll(".favorites__set");
 
 if  (sections) {
   sections.addEventListener("click", function(e) {
@@ -28,6 +30,15 @@ headerLink.forEach(link => link.addEventListener('click', function(e) {
     burgerMenu.classList.remove('active');
     body.classList.remove('lock');
  }));
+
+
+label.forEach(el => el.addEventListener('click', function(e) {
+  favorites.forEach((item) => {
+    item.style.display = "none";
+  }); 
+  document.getElementById(`set_${this.innerText.toLowerCase()}`).style.display = "";
+}));
+
 
 
 let position = 0;
