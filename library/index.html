@@ -39,7 +39,7 @@
                 <div class="profile">
                 <a href="#" class="profile__logo"> 
                      <img class="profile__img" src="images/svg/profile.svg" alt="profile">
-                </a> 
+                </a>  
                 </div>    
             </div>    
             <div class="header__container-burger">
@@ -193,19 +193,19 @@
                 <fieldset>
                     <div class="seasons__set">
                         <label class="label winter">
-                            <input class="season__input" type="radio" name="season" checked>
+                            <input class="season__input" type="radio" name="season" id="season_id1" checked>
                             <span class="season__span">Winter</span>
                         </label>
                         <label class="label spring">
-                            <input class="season__input" type="radio"  name="season">
+                            <input class="season__input" type="radio"  name="season" id="season_id2">
                             <span class="season__span">Spring</span>
                         </label>
                         <label class="label summer">
-                            <input class="season__input" type="radio"  name="season">
+                            <input class="season__input" type="radio"  name="season" id="season_id3">
                             <span class="season__span">Summer</span>
                           </label>
                         <label class="label autumn">
-                            <input class="season__input" type="radio" name="season">
+                            <input class="season__input" type="radio" name="season" id="season_id4">
                             <span class="season__span">Autumn</span>
                         </label>
                     </div>
@@ -476,7 +476,7 @@
                         <p class="book__desc">
                             With the fall rolling around, one can't help but think of baseball's postseason coming up! And what better way to prepare for it than reading the biography of one of the game's all-time greatest performers, the Man of Steal, Rickey Henderson? 
                         </p>
-                        <button class="book__buy__btn">Buy</button>
+                        <button class="book__buy_btn">Buy</button>
                         <div class="favorites__book">
                             <img src="images/books/autumn3.png" alt="autumn3">
                         </div>
@@ -652,6 +652,28 @@
           
         </section> 
     </div>
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+        <h1>My Test window</h1>
+        <p>My example</p>
+        <button class="close">X</button>
+        </div>
+    </div>
+    <div class="profile__menu profile_login" >
+        <div class="profile__menu-text">Profile</div>
+        <ul class="profile__menu-list">
+          <li class="profile__menu-item">Log In</li>
+          <li class="profile__menu-item">Register</li>
+        </ul>
+    </div>
+    <div class="profile__menu profile_logout" >
+        <div class="profile__menu-text">Profile</div>
+        <ul class="profile__menu-list">
+          <li class="profile__menu-item">My profile</li>
+          <li class="profile__menu-item">Log Out</li>
+        </ul>
+        
+    </div>    
   </main>
   <!-- FOOTER -->
   <footer class="footer">

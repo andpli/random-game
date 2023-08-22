@@ -150,15 +150,22 @@ img {
 }
 
 .profile {
-    padding: 31px 0;
+    margin: 31px 0;
     cursor: pointer;
+
 }
+
 
 .profile__img:hover{
       border-radius: 50%;
-      background: grey;
+      background: #BB945F;
+      transition: 0.6s;
 }
 
+.profile.active {
+    background: #BB945F;
+    border-radius: 50%;
+}
 
 .header__list{
     display: flex;
@@ -188,8 +195,8 @@ img {
 }
 
 .header__link:hover, .header__link:focus, .header__link:active{
-    opacity: 0.75;
-    transition: 0.2s;
+    color: #BB945F;
+    transition: 0.6s;
 }
 
 .header__container-burger{
@@ -213,7 +220,7 @@ img {
     display: flex;
     gap: 40px;
     position: relative;
-    z-index: 6;
+    z-index: 3;
   }
   
   .header__burger{
@@ -283,7 +290,7 @@ img {
     width: 332px;
     height: 470px;
     position: fixed;
-    z-index: 20;
+    z-index: 4;
     text-align: center;
     display: block;
     right: 0;
@@ -304,7 +311,7 @@ img {
 
 .sections{
     position: relative;
-    z-index: 5;
+    z-index: 2;
 }
 
 
@@ -397,8 +404,10 @@ h2 {
     align-items: flex-end;
 }
 
-.arrows{
-    cursor: pointer;   
+
+.arrows:hover{
+    background-color: #BB945F;
+    border-radius: 50%;
 }
 
 .slider__container{
@@ -414,13 +423,13 @@ h2 {
 .slider__track{
     display: flex;
     justify-content: space-between;  
-    transition: 0.2s;
+    transition: 0.5s;
     gap: 10px;
 }
 
 .slider__track-tablet{
     display: flex;
-    transition: 0.2s;
+    transition: 0.5s;
 }
 
 .carousel{
@@ -452,12 +461,6 @@ h2 {
     cursor: pointer;
 }
 
-/*
-.wrapper__circle:hover .circle{
-    background: #BB945F;
-}
-*/
-
 .circle{
     position: absolute;
     top: 5px;
@@ -466,6 +469,7 @@ h2 {
     height: 16px; 
     background-color: #000;
     border-radius: 50%;
+    transition: 0.5s;
 }
 
 .circle.active{
@@ -477,6 +481,7 @@ h2 {
     background-color: #BB945F;
     border-radius: 50%;
     transition: 0.5s;
+    cursor: auto;
 }
 
 /***********************/
@@ -526,7 +531,7 @@ h2 {
     left: -37px;
     width: 17px;
     height: 17px;
-    border: 2px solid #000000;
+    border: 2px solid black;
     border-radius: 50%;
     content: "";
 }
@@ -539,7 +544,7 @@ h2 {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background-color: #000000;
+    background-color: black;
     content: "";
 }
   
@@ -1125,6 +1130,7 @@ h2 {
 .footer__link:hover, .footer__link:focus, .footer__link:active{
     opacity: 0.75;
     transition: 0.6s;
+    color: #BB945F;
 }
 
 .footer__list{
@@ -1152,6 +1158,98 @@ h2 {
 
 .media__img:hover{
     transform: scale(110%);
-    transition: 0.2s;
+    transition: 0.6s;
 }
 
+.modal {
+display: none;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 400px;
+height: 300px;
+background-color: white;
+z-index: 6;
+border: 1px solid rgb(0, 0, 0);
+
+}
+
+.modal-content h1 {
+font-size: 24px;
+}
+
+.modal-content p {
+font-size: 16px;
+color: gray;
+}
+
+.close {
+position: absolute;
+top: 10px;
+right: 10px;
+width: 30px;
+height: 30px;
+background-color: red;
+color: white;
+text-align: center;
+cursor: pointer;
+}
+
+.show {
+display: block;
+/* background-color: rgba(0,0,0,0.5); */
+}
+
+.profile__menu {
+    display: none;
+    position: absolute;
+    top: 73px;
+    right: 39px;
+    width: 80px;
+    height: 115px;
+    background-color: white;
+    z-index: 6;
+
+}
+
+.profile__menu-text{
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+.profile__menu-text::after {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    width: 40px;
+    height: 1px;
+    background-color: #BB945F;;
+    content: "";
+}
+
+.profile__menu.active {
+    display: block;
+}
+
+.profile__menu-item{
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 5px 0;
+}
+
+.profile__menu-item:hover, .profile__menu-item:focus, .profile__menu-item:active{
+    transition: 0.6s;
+    color: #BB945F;
+}
