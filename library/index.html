@@ -652,28 +652,7 @@
           
         </section> 
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-content">
-        <h1>My Test window</h1>
-        <p>My example</p>
-        <button class="close">X</button>
-        </div>
-    </div>
-    <div class="profile__menu profile_login" >
-        <div class="profile__menu-text">Profile</div>
-        <ul class="profile__menu-list">
-          <li class="profile__menu-item">Log In</li>
-          <li class="profile__menu-item">Register</li>
-        </ul>
-    </div>
-    <div class="profile__menu profile_logout" >
-        <div class="profile__menu-text">Profile</div>
-        <ul class="profile__menu-list">
-          <li class="profile__menu-item">My profile</li>
-          <li class="profile__menu-item">Log Out</li>
-        </ul>
-        
-    </div>    
+   
   </main>
   <!-- FOOTER -->
   <footer class="footer">
@@ -712,6 +691,68 @@
             </div>
     
   </footer>
+
+  <div class="modal-background"></div>
+   
+  <div class="modal__register modal" id="modalRegister">
+    <form class="register__form">
+        <fieldset class="register__set">
+            <div class="register__text">Register</div>
+            <label class="register__label">First name
+                <input id="firstname" name="firstname" required="">
+            </label>
+            <label class="register__label">Last name
+                <input id="lastname" name="lastname" required="">
+            </label>
+            <label class="register__label">E-mail
+                <input id="email" name="email" required="" type="email">
+            </label>
+            <label class="register__label">Password
+                <input id="password" name="password" required="" type="password" minlength="8">
+            </label>
+            <button class="register__button">Sign Up</button>
+        </fieldset>
+    </form>
+    <button class="close__button"></button>
+    <p class="login__message">Already have an account?
+        <span class="login__span">Login</span>
+    </p>
+  </div>
+
+  <div class="modal__login modal" id="modalLogIn">
+    <form class="login__form">
+        <fieldset class="login__set">
+            <div class="login__text">login</div>
+            <label class="login__label">E-mail or readers card
+                <input id="emailcard" name="emailcard" required="">
+            </label>
+            <label class="login__label">Password
+                <input id="password" name="password" required="" type="password" minlength="8">
+            </label>
+            <button class="login__button">Log In</button>
+        </fieldset>
+    </form>
+    <button class="close__button"></button>
+    <p class="register__message">Don’t have an account?
+        <span class="register__span">Register</span>
+    </p>
+  </div>
+
+  <div class="profile__menu profile_login" >
+    <div class="profile__menu-text">Profile</div>
+    <ul class="profile__menu-list">
+      <li class="profile__menu-item" id="item__login">Log In</li>
+      <li class="profile__menu-item" id="item__register">Register</li>
+    </ul>
+  </div>
+  <div class="profile__menu profile_logout" >
+    <div class="profile__menu-text">Profile</div>
+    <ul class="profile__menu-list">
+      <li class="profile__menu-item">My profile</li>
+      <li class="profile__menu-item">Log Out</li>
+    </ul>
+    
+  </div> 
   <script src="js/index.js"></script>
 </body>
 </html>

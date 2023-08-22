@@ -31,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
@@ -86,7 +87,6 @@ html {
 }
 
 body {
-  
    font-family: 'Inter';
    font-style: normal;
    font-size: 10px; 
@@ -96,6 +96,8 @@ body {
    max-width: 1440px;
    margin: 0 auto;
    background-color: #FFF;
+   display: flex;
+   flex-direction: column;
 }
 
 @media  (max-width: 1024px) {
@@ -207,7 +209,7 @@ img {
     right: -1000px;
     display: block;
     position: fixed;
-    z-index: 20;
+    z-index: 6;
     transition: all 0.5s; 
   }
 
@@ -1161,44 +1163,158 @@ h2 {
     transition: 0.6s;
 }
 
+.modal-background {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #0f070766;
+    z-index: 7;
+    transition: .3s;
+    opacity: 1;
+}
+
 .modal {
-display: none;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 400px;
-height: 300px;
-background-color: white;
-z-index: 6;
-border: 1px solid rgb(0, 0, 0);
-
+    z-index: 8;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
+    align-self: center;
+    background-color: #fff;
+    display: none;
+    flex-direction: column;
+    transition: .3s;
+    opacity: 1;
 }
 
-.modal-content h1 {
-font-size: 24px;
+.modal__register, .modal__login{
+    padding: 20px 25px;
 }
 
-.modal-content p {
-font-size: 16px;
-color: gray;
+.modal__register{
+    width: 250px;
+    height: 382px;
 }
 
-.close {
-position: absolute;
-top: 10px;
-right: 10px;
-width: 30px;
-height: 30px;
-background-color: red;
-color: white;
-text-align: center;
-cursor: pointer;
+.modal__login{
+    width: 250px;
+    height: 262px;
 }
 
+.register__text, .login__text{
+    padding-bottom: 10px;
+    color: #000;
+    text-align: center;
+    font-family: Forum;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;  /* 100% */
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.register__label, .login__label{
+    padding-top: 10px;
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 133.333% */
+    letter-spacing: 0.3px; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal__register input, .modal__login input {
+    margin-top: 10px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #BB945F;;
+}
+
+.register__button, .login__button {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 75px;
+    height: 30px;
+    flex-shrink: 0; 
+    border-radius: 2px;
+    border: 1px solid #0C0C0E; 
+    background-color: transparent;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px; 
+    cursor: pointer;
+}
+
+.register__button:hover, .register__button:focus, 
+.login__button:hover, .login__button:focus{
+    background: #BB945F;
+    border: 1px solid #BB945F;
+    transition: 0.5s;
+}
+
+.login__message, .register__message{
+    color: #000;
+    text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+}
+
+.login__span, .register__span{
+    padding-left: 10px;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    text-decoration-line: underline; 
+    cursor: pointer;
+}
+
+.register__span:hover, .register__span:focus, 
+.login__span:hover, .login__span:focus{
+    color: #BB945F;
+    transition: 0.5s;
+}
+
+.close__button {
+    width: 18px;
+    height: 18px;
+    background-image: url(/images/svg/close_btn.svg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+}
+
+.close__button:hover{
+    transform: scale(120%);
+    transition: 0.5s;
+}
 .show {
-display: block;
-/* background-color: rgba(0,0,0,0.5); */
+    display: flex;
 }
 
 .profile__menu {
@@ -1209,7 +1325,7 @@ display: block;
     width: 80px;
     height: 115px;
     background-color: white;
-    z-index: 6;
+    z-index: 5;
 
 }
 
@@ -1223,6 +1339,7 @@ display: block;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 15px;
+    
 }
 .profile__menu-text::after {
     position: absolute;
@@ -1247,6 +1364,7 @@ display: block;
     font-weight: 400;
     line-height: 20px;
     padding: 5px 0;
+    cursor: pointer;
 }
 
 .profile__menu-item:hover, .profile__menu-item:focus, .profile__menu-item:active{

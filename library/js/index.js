@@ -7,6 +7,7 @@ const profile = document.querySelectorAll(".profile");
 const headerLinks = document.querySelectorAll(".header__link");
 
 const toggleBurger = (action) => {
+  closeProfileMenu();
   if (action == 'remove') {
       burgerMenuButton.classList.remove('active');
       burgerMenu.classList.remove('active');
@@ -15,7 +16,6 @@ const toggleBurger = (action) => {
       burgerMenuButton.classList.toggle('active');
       burgerMenu.classList.toggle('active');
       body.classList.toggle('lock');
-      closeProfileMenu();
   }
 }
 
@@ -179,38 +179,53 @@ checkBtns();
 
 /************/
 
-var modal = document.getElementById("myModal");
-var trigger = document.querySelector(".logo");
-var close = document.querySelector(".close");
+var modalRegister = document.querySelector("#modalRegister");
+var modalLogIn = document.querySelector("#modalLogIn");
+var modalBack = document.querySelector(".modal-background");
+var itemRegister = document.querySelector("#item__register");
+var itemLogin = document.querySelector("#item__login");
+var spanRegister = document.querySelector(".register__span");
+var spanLogin = document.querySelector(".login__span");
+var close = document.querySelectorAll(".close__button");
 
-function openModal() {
+function openModal(modal) {
+closeModal();
+closeProfileMenu()
 modal.classList.add("show");
+modalBack.classList.add("show");
 body.classList.add('lock');
 }
 
 
 function closeModal() {
-modal.classList.remove("show");
+
+modalLogIn.classList.remove("show");
+modalRegister.classList.remove("show");
+modalBack.classList.remove("show");
 body.classList.remove('lock');
 
 }
 
-
-trigger.addEventListener("click", openModal);
-close.addEventListener("click", closeModal);
+spanLogin.addEventListener("click", () => {openModal(modalLogIn)});
+spanRegister.addEventListener("click", () => {openModal(modalRegister)});
+itemLogin.addEventListener("click", () => {openModal(modalLogIn)});
+itemRegister.addEventListener("click", () => {openModal(modalRegister)});
+close.forEach(link => link.addEventListener('click', () => {closeModal()}));
+modalBack.addEventListener("click", closeModal);
 
 var profileMenu = document.querySelector(".profile_login");
 
 profile.forEach(link => link.addEventListener('click', () => {
   toggleBurger("remove");
   openProfileMenu();
-  link.classList.toggle("active");
+  link.classList.add("active");
 }));
 
 function openProfileMenu() {
-  profileMenu.classList.toggle("active");
+  profileMenu.classList.add("active");
 }
   
 function closeProfileMenu() {
+  
   profileMenu.classList.remove("active");
 }
