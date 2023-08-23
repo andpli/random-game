@@ -602,8 +602,7 @@
                         </a>             
                     </p> 
                      <p>Putterham Library: 
-                        <a class="phone__to"  
-                           href="tel:6177302385">(617) 730-2385
+                        <a class="phone__to" href="tel:6177302385">(617) 730-2385
                         </a>      
                      </p> 
                      <p style="font-weight: 700; padding-top: 40px;">Senior Staff</p> 
@@ -737,6 +736,44 @@
         <span class="register__span">Register</span>
     </p>
   </div>
+
+  <div class="modal__buycard modal" id="modalBuyCard">
+    <form class="buycard__form">
+       <div class="buycard__text">Buy a library card</div>
+       <div class="buycard__group">
+       <fieldset class="buycard__set">
+            <label class="buycard__label">Bank card number
+                <input id="bankcard" name="bankcard" required="">
+            </label>
+            <label class="buycard__label">Expiration code
+                <div class="buycard__date">
+                    <input id="month" name="month" required="" type="password" maxlength="2">
+                    <input id="year" name="year" required="" type="password" maxlength="4">
+                </div>
+            </label>
+            <label class="buycard__label">CVC
+                <input id="cvc" name="cvc" required="" type="password" maxlength="3">
+            </label>
+            <label class="buycard__label">Cardholder name
+                <input id="cardholder" name="cardholder" required="" type="password" maxlength="3">
+            </label>
+            <label class="buycard__label">Postal code
+                <input id="pcode" name="pcode" required="" type="password" maxlength="3">
+            </label>
+            <label class="buycard__label">City / Town
+                <input id="city" name="city" required="" type="password" maxlength="3">
+            </label>            
+            <button class="buy__button">Buy</button>
+            <span class="buycard__price">$ 25.00</span>
+        </fieldset> 
+        <div class="buycard__info">
+            If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.
+        </div>  
+       </div>
+    </form>
+    <button class="close__button white"></button>
+
+  </div>  
 
   <div class="profile__menu profile_login" >
     <div class="profile__menu-text">Profile</div>

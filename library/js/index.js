@@ -7,7 +7,6 @@ const profile = document.querySelectorAll(".profile");
 const headerLinks = document.querySelectorAll(".header__link");
 
 const toggleBurger = (action) => {
-  closeProfileMenu();
   if (action == 'remove') {
       burgerMenuButton.classList.remove('active');
       burgerMenu.classList.remove('active');
@@ -16,6 +15,7 @@ const toggleBurger = (action) => {
       burgerMenuButton.classList.toggle('active');
       burgerMenu.classList.toggle('active');
       body.classList.toggle('lock');
+      closeProfileMenu();
   }
 }
 
@@ -23,10 +23,14 @@ if  (burgerMenuButton) {
   burgerMenuButton.addEventListener("click", () => {toggleBurger("toggle")} );
 }
 
-overlay.addEventListener("click", () => {toggleBurger("remove")});
-// profile.forEach(link => link.addEventListener('click', () => {toggleBurger("remove")}));
+overlay.addEventListener("click", () => {closeMenu();});
 headerLinks.forEach(link => link.addEventListener('click', () => {toggleBurger("remove")}));
 /************/
+
+function closeMenu() {
+  toggleBurger("remove");
+  closeProfileMenu();
+}
 
 
 
@@ -178,54 +182,64 @@ const setCircle = () => {
 checkBtns();
 
 /************/
-
+var prevModal = '';
 var modalRegister = document.querySelector("#modalRegister");
 var modalLogIn = document.querySelector("#modalLogIn");
+var modalBuyCard = document.querySelector("#modalBuyCard");
+var bookBuyBtn = document.querySelectorAll(".book__buy_btn");
 var modalBack = document.querySelector(".modal-background");
 var itemRegister = document.querySelector("#item__register");
 var itemLogin = document.querySelector("#item__login");
 var spanRegister = document.querySelector(".register__span");
 var spanLogin = document.querySelector(".login__span");
+var getFormSignup = document.querySelector(".get__form_signup");
+var getFormLogin = document.querySelector(".get__form_login");
 var close = document.querySelectorAll(".close__button");
 
 function openModal(modal) {
-closeModal();
-closeProfileMenu()
+closeModal(prevModal);
+closeProfileMenu();
+prevModal = modal;
 modal.classList.add("show");
 modalBack.classList.add("show");
 body.classList.add('lock');
 }
 
 
-function closeModal() {
-
-modalLogIn.classList.remove("show");
-modalRegister.classList.remove("show");
+function closeModal(modal) {
+if (modal != '') {modal.classList.remove("show");}
 modalBack.classList.remove("show");
 body.classList.remove('lock');
-
 }
 
+bookBuyBtn.forEach(link => link.addEventListener('click', () => {openModal(modalBuyCard)}));
 spanLogin.addEventListener("click", () => {openModal(modalLogIn)});
 spanRegister.addEventListener("click", () => {openModal(modalRegister)});
 itemLogin.addEventListener("click", () => {openModal(modalLogIn)});
 itemRegister.addEventListener("click", () => {openModal(modalRegister)});
-close.forEach(link => link.addEventListener('click', () => {closeModal()}));
-modalBack.addEventListener("click", closeModal);
+getFormLogin.addEventListener("click", () => {openModal(modalLogIn)});
+getFormSignup.addEventListener("click", () => {openModal(modalRegister)});
+
+close.forEach(link => link.addEventListener('click', () => {closeModal(prevModal)}));
+modalBack.addEventListener("click", () => { closeModal(prevModal)});
 
 var profileMenu = document.querySelector(".profile_login");
 
 profile.forEach(link => link.addEventListener('click', () => {
-  toggleBurger("remove");
-  openProfileMenu();
-  link.classList.add("active");
+  openProfileMenu(link);
 }));
 
-function openProfileMenu() {
+function openProfileMenu(link) {
+  toggleBurger("remove");
+  link.classList.add("active");
   profileMenu.classList.add("active");
+ 
 }
-  
+
+//let profileActive = document.querySelector(".profile.active");
+
 function closeProfileMenu() {
-  
+ // console.log(profileActive);
+  profile.forEach(el => el.classList.remove('active'));
   profileMenu.classList.remove("active");
 }

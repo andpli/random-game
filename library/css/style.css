@@ -1188,6 +1188,38 @@ h2 {
     opacity: 1;
 }
 
+.close__button {
+    width: 18px;
+    height: 18px;
+    background-image: url(/images/svg/close_btn.svg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+}
+
+.white {
+    width: 20px;
+    height: 20px;
+    top: 22px;
+    right: 22px;
+    background-image: url(/images/svg/close_btn_white.svg) ;
+}
+
+.close__button:hover{
+    transform: scale(120%);
+    transition: 0.5s;
+}
+
+.show {
+    display: flex;
+}
+
 .modal__register, .modal__login{
     padding: 20px 25px;
 }
@@ -1215,7 +1247,7 @@ h2 {
     text-transform: uppercase;
 }
 
-.register__label, .login__label{
+.register__label, .login__label, .buycard__label{
     padding-top: 10px;
     color: #000;
     text-align: center;
@@ -1230,14 +1262,15 @@ h2 {
     align-items: flex-start;
 }
 
-.modal__register input, .modal__login input {
+.modal__register input, .modal__login input, 
+.modal__buycard input {
     margin-top: 10px;
     width: 200px;
     height: 20px;
     border: 1px solid #BB945F;;
 }
 
-.register__button, .login__button {
+.register__button, .login__button , .buy__button {
     margin-top: 20px;
     margin-bottom: 10px;
     width: 75px;
@@ -1258,7 +1291,8 @@ h2 {
 }
 
 .register__button:hover, .register__button:focus, 
-.login__button:hover, .login__button:focus{
+.login__button:hover, .login__button:focus, 
+.buy__button:hover, .buy__button:focus{
     background: #BB945F;
     border: 1px solid #BB945F;
     transition: 0.5s;
@@ -1294,28 +1328,69 @@ h2 {
     transition: 0.5s;
 }
 
-.close__button {
-    width: 18px;
-    height: 18px;
-    background-image: url(/images/svg/close_btn.svg) ;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    border: none;
-    background-color: transparent;
-    top: 14px;
-    right: 14px;
-    cursor: pointer;
+.modal__buycard{
+        width: 650px;
+        height: 540px;
 }
 
-.close__button:hover{
-    transform: scale(120%);
-    transition: 0.5s;
+.buycard__text{
+    padding-top: 7px;
+    height: 60px; 
+    background-color: #0C0C0E;;
+    color: #FFF;
+    text-align: center;
+    font-family: Forum;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    text-transform: uppercase; 
 }
-.show {
+.buycard__group{
+    padding: 20px 40px;
     display: flex;
 }
+
+.buycard__date input{
+    width: 45px;
+}
+
+.buycard__date{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#cvc{
+    width: 45px;
+    margin-bottom: 10px;
+}
+
+.buycard__price{
+    padding-left: 25px;
+    vertical-align: text-top;
+    color: #0C0C0E;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 100% */
+    letter-spacing: 2px;
+    text-transform: uppercase; 
+}
+.buycard__info{
+    padding-top: 10px;
+    width: 330px;
+    margin-left: 40px;
+    color: #8E8E8E;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 133.333% */
+    letter-spacing: 2px; 
+}
+
 
 .profile__menu {
     display: none;
