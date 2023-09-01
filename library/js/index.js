@@ -182,43 +182,55 @@ const setCircle = () => {
 checkBtns();
 
 /************/
+
 var prevModal = '';
 var modalRegister = document.querySelector("#modalRegister");
 var modalLogIn = document.querySelector("#modalLogIn");
 var modalBuyCard = document.querySelector("#modalBuyCard");
+var modalMyProfile = document.querySelector("#modalMyProfile");
 var bookBuyBtn = document.querySelectorAll(".book__buy_btn");
 var modalBack = document.querySelector(".modal-background");
 var itemRegister = document.querySelector("#item__register");
 var itemLogin = document.querySelector("#item__login");
+var itemMyProfile = document.querySelector("#item__myprofile");
 var spanRegister = document.querySelector(".register__span");
 var spanLogin = document.querySelector(".login__span");
 var getFormSignup = document.querySelector(".get__form_signup");
 var getFormLogin = document.querySelector(".get__form_login");
 var close = document.querySelectorAll(".close__button");
+var cardNumber = document.querySelector(".card__number");
+var copyCardButton = document.querySelector(".copy__card");
+
+
 
 function openModal(modal) {
-closeModal(prevModal);
-closeProfileMenu();
-prevModal = modal;
-modal.classList.add("show");
-modalBack.classList.add("show");
-body.classList.add('lock');
+    closeModal(prevModal);
+    closeProfileMenu();
+    prevModal = modal;
+    //document.querySelector(".name__group").style.height = "543px";
+    modal.classList.add("show");
+    modalBack.classList.add("show");
+    body.classList.add('lock');
 }
 
-
 function closeModal(modal) {
-if (modal != '') {modal.classList.remove("show");}
+if (modal != '') {
+  modal.scrollTop = 0;
+  modal.classList.remove("show");
+}
 modalBack.classList.remove("show");
 body.classList.remove('lock');
 }
 
 bookBuyBtn.forEach(link => link.addEventListener('click', () => {openModal(modalBuyCard)}));
+itemMyProfile.addEventListener("click", () => {openModal(modalMyProfile)});
 spanLogin.addEventListener("click", () => {openModal(modalLogIn)});
 spanRegister.addEventListener("click", () => {openModal(modalRegister)});
 itemLogin.addEventListener("click", () => {openModal(modalLogIn)});
 itemRegister.addEventListener("click", () => {openModal(modalRegister)});
 getFormLogin.addEventListener("click", () => {openModal(modalLogIn)});
 getFormSignup.addEventListener("click", () => {openModal(modalRegister)});
+copyCardButton.addEventListener("click",() => {navigator.clipboard.writeText(cardNumber.textContent)});
 
 close.forEach(link => link.addEventListener('click', () => {closeModal(prevModal)}));
 modalBack.addEventListener("click", () => { closeModal(prevModal)});
