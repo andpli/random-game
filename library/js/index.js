@@ -192,6 +192,7 @@ var bookBuyBtn = document.querySelectorAll(".book__buy_btn");
 var modalBack = document.querySelector(".modal-background");
 var itemRegister = document.querySelector("#item__register");
 var itemLogin = document.querySelector("#item__login");
+var itemLogout = document.querySelector("#item__logout");
 var itemMyProfile = document.querySelector("#item__myprofile");
 var spanRegister = document.querySelector(".register__span");
 var spanLogin = document.querySelector(".login__span");
@@ -200,14 +201,14 @@ var getFormLogin = document.querySelector(".get__form_login");
 var close = document.querySelectorAll(".close__button");
 var cardNumber = document.querySelector(".card__number");
 var copyCardButton = document.querySelector(".copy__card");
-
-
+var registerButton = document.querySelector(".register__button");
+var loginButton = document.querySelector(".login__button");
+var buyCardButton = document.querySelector(".buy__button");
 
 function openModal(modal) {
     closeModal(prevModal);
     closeProfileMenu();
     prevModal = modal;
-    //document.querySelector(".name__group").style.height = "543px";
     modal.classList.add("show");
     modalBack.classList.add("show");
     body.classList.add('lock');
@@ -222,7 +223,7 @@ modalBack.classList.remove("show");
 body.classList.remove('lock');
 }
 
-bookBuyBtn.forEach(link => link.addEventListener('click', () => {openModal(modalBuyCard)}));
+bookBuyBtn.forEach(el => el.addEventListener('click', () => {clickBookBuy(el);}));
 itemMyProfile.addEventListener("click", () => {openModal(modalMyProfile)});
 spanLogin.addEventListener("click", () => {openModal(modalLogIn)});
 spanRegister.addEventListener("click", () => {openModal(modalRegister)});
@@ -231,12 +232,22 @@ itemRegister.addEventListener("click", () => {openModal(modalRegister)});
 getFormLogin.addEventListener("click", () => {openModal(modalLogIn)});
 getFormSignup.addEventListener("click", () => {openModal(modalRegister)});
 copyCardButton.addEventListener("click",() => {navigator.clipboard.writeText(cardNumber.textContent)});
+registerButton.addEventListener("click",() => {startRegistration()});
+itemLogout.addEventListener("click",() => {logOut()});
+loginButton.addEventListener("click",() => {logIn()});
+buyCardButton.addEventListener("click",() => {processBuyCard()});
 
 close.forEach(link => link.addEventListener('click', () => {closeModal(prevModal)}));
 modalBack.addEventListener("click", () => { closeModal(prevModal)});
 
-var profileMenu = document.querySelector(".profile_login");
+let profileMenu = '';
 
+if (sessionStorage.getItem('currentBPL') === null) {
+  profileMenu = document.querySelector(".profile_login"); } 
+else {
+  profileMenu = document.querySelector(".profile_logout");
+  setValues(getCurrentUser());
+}
 profile.forEach(link => link.addEventListener('click', () => {
   openProfileMenu(link);
 }));
@@ -245,7 +256,6 @@ function openProfileMenu(link) {
   toggleBurger("remove");
   link.classList.add("active");
   profileMenu.classList.add("active");
- 
 }
 
 //let profileActive = document.querySelector(".profile.active");
@@ -254,4 +264,186 @@ function closeProfileMenu() {
  // console.log(profileActive);
   profile.forEach(el => el.classList.remove('active'));
   profileMenu.classList.remove("active");
+}
+
+function getRandomValue(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+  
+function getRandomHexValue() {
+  let res = "";
+  for (let i = 0; i < 9; i++) { 
+    let digit = getRandomValue(0, 15);
+    res += digit.toString(16);
+  }
+  return res;
+}
+  
+function startRegistration() {
+  if (sessionStorage.getItem('currentBPL') !== null ) return;
+  let arr = [];
+  const fname = document.querySelector("#firstname").value;
+  const lname = document.querySelector("#lastname").value;
+  const email = document.querySelector("#email").value;
+  const pwd = document.querySelector("#password-reg").value;
+  const hex = getRandomHexValue();
+  if (localStorage.usersBPL !== undefined) {
+    arr = JSON.parse(localStorage.getItem("usersBPL"));
+  }
+  
+  if (arr.some((el) => el.email === email)) {
+    alert(email + ' already registered'); return;
+  }
+  sessionStorage.setItem('currentBPL', hex);
+  
+  alert(hex);
+  
+  let arrlen = arr.length;
+  arr.push({firstName: fname, lastName: lname,
+            email: email, password: pwd,
+            cardNumber: hex, visits: 1,
+            books: [], cardExists: 0
+          });
+  setValues(arr[arrlen]);             
+  localStorage.setItem("usersBPL", JSON.stringify(arr));
+}
+
+function logOut() {
+  sessionStorage.removeItem('currentBPL');
+  closeProfileMenu();
+  profileMenu = document.querySelector(".profile_login");
+  location.reload();
+  return true;
+}
+
+function logIn() {
+  if (sessionStorage.getItem('currentBPL') !== null ) return;
+
+  let arr = [];
+  const email = document.querySelector("#emailcard").value;
+  const pwd = document.querySelector("#password-log").value;
+
+  if (localStorage.usersBPL !== undefined) {
+    arr = JSON.parse(localStorage.getItem("usersBPL"));
+  } else return;
+
+  let lbFlag = false;
+  for (let li = 0; li < arr.length; li += 1) {
+    console.log(arr[li]);
+    if ((arr[li].email === email || arr[li].cardNumber === email)
+      && (arr[li].password === pwd)) {
+      lbFlag = true;
+      sessionStorage.setItem('currentBPL', arr[li].cardNumber);
+      arr[li].visits += 1;
+      localStorage.setItem("usersBPL", JSON.stringify(arr));
+      setValues(arr[li]);                                                    
+      profileMenu = document.querySelector(".profile_logout");
+      closeModal(prevModal);
+    }
+  }
+  if (lbFlag === false) {alert('incorrect user/password')}
+  
+  
+}
+
+function setValues(obj) {
+
+  for (let li = 0; li < 2; li++) {
+    let profile = document.querySelectorAll(".profile")[li];
+    let oldNode = document.querySelectorAll(".profile__logo")[0];
+    let newNode = document.createElement("div");
+    newNode.classList.add('profile__logo-text');
+    newNode.setAttribute('title', obj.firstName + ' ' + obj.lastName);
+    let elemText = document.createTextNode(obj.firstName[0] + obj.lastName[0]);
+    newNode.appendChild(elemText);
+    if (oldNode !== undefined)
+    profile.replaceChild(newNode, oldNode);
+  }
+
+  document.querySelector(".small").textContent = obj.cardNumber;
+  document.querySelector(".card__number").textContent = obj.cardNumber;
+  document.querySelector(".visits").textContent = obj.visits;
+  document.querySelector(".books").textContent = obj.books.length;
+  document.querySelector(".name__full").textContent = obj.firstName + ' ' +
+                                                      obj.lastName;
+  document.querySelector(".name__simple").textContent = obj.firstName[0] +
+                                                        obj.lastName[0]; 
+  
+  let rentedList = document.querySelector(".rented__list");
+  let rentedItems = document.querySelectorAll(".rented__item");
+  for (let li = 0; li < rentedItems.length; li++){
+    rentedList.removeChild(rentedItems[li]);
+  }; 
+
+  for (let li = 0; li < obj.books.length; li++){
+    newNode = document.createElement("li");
+    newNode.classList.add('rented__item');
+    elemText = document.createTextNode(obj.books[li][1]);
+    newNode.appendChild(elemText);
+    rentedList.appendChild(newNode);
+    bookBuyBtn[obj.books[li][0]].classList.add('own__book_btn');
+  }; 
+
+}
+
+function getCurrentUser() {
+  if (sessionStorage.getItem('currentBPL') === null ) return;
+
+  let arr = [];
+  if (localStorage.usersBPL !== undefined) {
+    arr = JSON.parse(localStorage.getItem("usersBPL"));
+  }
+  
+  for (let li = 0; li < arr.length; li++ ) {
+    if (arr[li].cardNumber === sessionStorage.getItem('currentBPL')) {
+      // setValues(arr[li]); 
+      return arr[li];
+    }
+  }
+  return undefined;
+}
+
+function clickBookBuy(el) {
+  let obj = getCurrentUser();
+  console.log(obj);
+  if (obj !== undefined) {
+    if (obj.cardExists === 0) {
+      openModal(modalBuyCard);}
+      else {processBuyBook(Array.prototype.indexOf.call(bookBuyBtn, el));}
+  }
+}
+
+function processBuyCard() {
+  //checkFields
+  let idx = -1;
+  let arr = JSON.parse(localStorage.getItem("usersBPL"));
+  for (let li = 0; li < arr.length; li++ ) {
+    if (arr[li].cardNumber === sessionStorage.getItem('currentBPL')) {
+      arr[li].cardExists = 1; idx = li; break;
+    }
+  }
+  localStorage.setItem("usersBPL", JSON.stringify(arr));
+  if (idx >= 0) setValues(arr[idx]);
+  return true;
+}
+
+function processBuyBook(btn) {
+  let auth = document.querySelectorAll(".book__main")[btn].textContent.trim();
+  let pos = auth.indexOf('By ');
+  auth = auth.substring(pos + 3);
+  let book =  document.querySelectorAll(".book__name")[btn].textContent.trim();
+  console.log(book);
+  console.log(auth);
+  pos = -1;
+  let arr = JSON.parse(localStorage.getItem("usersBPL"));
+  for (let li = 0; li < arr.length; li++ ) {
+    if (arr[li].cardNumber === sessionStorage.getItem('currentBPL')) {
+      arr[li].books.push([btn, book + ', ' + auth]); 
+      pos = li; break;
+    }
+  }
+  localStorage.setItem("usersBPL", JSON.stringify(arr));
+  if (pos >= 0) setValues(arr[pos]);
+
+  return true;
 }

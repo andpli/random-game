@@ -277,7 +277,7 @@
                         <p class="book__desc">
                             A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.
                         </p>
-                        <button class="own__book_btn" disabled>Own</button>
+                        <button class="book__buy_btn">Own</button>
                         <div class="favorites__book">
                             <img src="images/books/winter4.png" alt="winter4">
                         </div>
@@ -349,7 +349,7 @@
                         <p class="book__desc">
                             A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
                         </p>
-                        <button class="own__book_btn" disabled>Own</button>
+                        <button class="book__buy_btn">Own</button>
                         <div class="favorites__book">
                             <img src="images/books/spring4.png" alt="spring4">
                         </div>
@@ -365,7 +365,7 @@
                             <div class="book__name">
                                 Crude: A Memoir
                             </div>
-                            Pablo Fajardo & ​​Sophie Tardy-Joubert
+                            By Pablo Fajardo & ​​Sophie Tardy-Joubert
                         </div>
                         <p class="book__desc">
                             Drawing and color by Damien Roudeau | This book illustrates the struggles of a group of indigenous Ecuadoreans as they try to sue the ChevronTexaco company for damage their oil fields did to the Amazon and her people 
@@ -707,7 +707,7 @@
                 <input id="email" name="email" required="" type="email">
             </label>
             <label class="register__label">Password
-                <input id="password" name="password" required="" type="password" minlength="8">
+                <input id="password-reg" name="password" required="" type="password" minlength="8">
             </label>
             <button class="register__button">Sign Up</button>
         </fieldset>
@@ -718,7 +718,7 @@
     </p>
   </div>
 
-  <div class="modal__login modal" id="modalLogIn">
+  <div class="modal__login modal" id="modalLogIn" onsubmit="return false;">
     <form class="login__form">
         <fieldset class="login__set">
             <div class="login__text">login</div>
@@ -726,7 +726,7 @@
                 <input id="emailcard" name="emailcard" required="">
             </label>
             <label class="login__label">Password
-                <input id="password" name="password" required="" type="password" minlength="8">
+                <input id="password-log" name="password" required="" type="password" minlength="8">
             </label>
             <button class="login__button">Log In</button>
         </fieldset>
@@ -752,7 +752,7 @@
         <div class="profile__detail-container">
             <div class="profile__details">visits
                 <img src="/images/svg/union.svg" alt="union">
-                <p>23</p>
+                <p class="visits">23</p>
             </div>
             <div class="profile__details">bonuses
                 <img src="/images/svg/star.svg" alt="star">
@@ -760,7 +760,7 @@
             </div>
             <div class="profile__details">Books
                 <img src="/images/svg/book.svg" alt="book">
-                <p>2</p>
+                <p class="books">2</p>
             </div>
         </div>
         <div class="rented__books">Rented books</div>
@@ -824,14 +824,13 @@
     <ul class="profile__menu-list">
       <li class="profile__menu-item" id="item__login">Log In</li>
       <li class="profile__menu-item" id="item__register">Register</li>
-      <li class="profile__menu-item" id="item__myprofile">My profile</li>
     </ul>
   </div>
   <div class="profile__menu profile_logout" >
-    <div class="profile__menu-text">Profile</div>
+    <div class="profile__menu-text small">Profile</div>
     <ul class="profile__menu-list">
-      <li class="profile__menu-item"  id="item__myprofile__">My profile</li>
-      <li class="profile__menu-item">Log Out</li>
+      <li class="profile__menu-item"  id="item__myprofile">My profile</li>
+      <li class="profile__menu-item" id="item__logout">Log Out</li>
     </ul>
     
   </div> 

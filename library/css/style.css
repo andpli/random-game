@@ -170,6 +170,29 @@ img {
     border-radius: 50%;
 }
 
+.profile__logo-text{
+    display: flex;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    color: #BB945F;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+.profile__logo-text:hover {
+    background: #BB945F;
+    color: white;
+    transition: 0.6s;
+}
+
 .header__list{
     display: flex;
     flex-wrap: wrap;
@@ -694,6 +717,13 @@ h2 {
     border: 1px solid #BB945F;
     transition: 0.5s;
 }
+
+.own__book_btn:hover, .own__book_btn:focus{
+    background: transparent; 
+    border: 1px solid #BB945F;
+    cursor: default;
+}
+
 /*
 .book__buy_btn:active{
     background: #715a39;
@@ -1335,7 +1365,7 @@ h2 {
 }
 
 .modal__buycard{
-        width: 650px;
+        width: 640px;
         height: 540px;
 }
 
@@ -1353,7 +1383,7 @@ h2 {
     text-transform: uppercase; 
 }
 .buycard__group{
-    padding: 20px 40px;
+    padding: 20px 35px;
     display: flex;
 }
 
@@ -1509,7 +1539,7 @@ h2 {
 .rented__list{
     padding-left: 30px; 
     max-width: 400px;
-    max-height: 60px;
+    max-height: 63px;
     overflow: auto;
 }
 
@@ -1587,6 +1617,10 @@ h2 {
     padding-top: 5px;
     padding-bottom: 15px;
     
+}
+.small{
+    font-size: 12px;
+    text-transform: uppercase;
 }
 .profile__menu-text::after {
     position: absolute;
