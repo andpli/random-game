@@ -913,11 +913,11 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 344px;
+   /* gap: 344px; */
     padding: 40px 0;
 }
-
-@media  (max-width: 1440px) {
+/*
+@media  (max-width: 1439px) {
     .cards__wrapper{
         display: block;
         padding: 40px 65px;
@@ -937,9 +937,21 @@ h2 {
         padding: 40px 0;
     }
  }
+*/
+
+@media  (max-width: 1140px) {
+    .cards__wrapper{
+        display: flex;
+        padding: 40px 0;
+        gap: 0;
+        justify-content: center;
+    }
+}
 
 .find__form_name{
-    padding-left: 138px;
+    display: flex;
+    justify-content: center;
+    padding-left: 5px;
     padding-bottom: 30px;
     font-family: Inter;
     font-size: 30px;
@@ -959,7 +971,7 @@ h2 {
 .find__form_fields {
     width: 560px;
     height: 272px; 
-    margin: 19px 20px 20px 19px;
+    margin: 19px 20px 15px 19px;
     background: #BB945F; 
  }
 
@@ -1007,7 +1019,7 @@ h2 {
 
 
 .find__form_submitbox{
-   padding: 0px 179px 30px 179px;
+   padding: 5px 179px 30px 179px;
 } 
 
 .find__form_submit{
@@ -1032,10 +1044,51 @@ h2 {
     cursor: pointer;
 }
 
+.find__form-container{
+    display: none;
+    padding-left: 30px;
+    justify-content: center;
+}
+
+.find__form__details{
+    display: flex;
+    flex-direction: column;
+    padding-right: 35px;
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 100% */
+    letter-spacing: 0.2px;
+    text-transform: capitalize; 
+    align-items: center;
+    gap: 1px;
+}
+
+.find__form__details img{
+    width: 20px;
+}
+
+.find__form__details p{
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 200% */
+    letter-spacing: 0.2px;
+    text-transform: capitalize; 
+}
+
+
 .get__card{
     max-width: 456px;
    
 }
+
 .get__form_fields {
     display: flex;
     flex-wrap: wrap;
@@ -1071,7 +1124,7 @@ h2 {
     gap: 20px;
 }
 
-@media  (max-width: 1440px) {
+@media  (max-width: 1140px) {
     .get__form_name {
         padding-top: 21px;
         padding-bottom: 38px;
@@ -1083,15 +1136,15 @@ h2 {
     .get__form_box {
         justify-content: center;
     } 
-    .get__card{
-        max-width: 700px;
+   .get__card{
+        max-width: 535px;
     }
     .get__form_box{
         padding-top: 8px;
     }
 }
 
-.get__form_signup, .get__form_login{
+.get__form_signup, .get__form_login, .get__form_profile{
     width: 75px;
     height: 30px;
     color: #0C0C0E;
@@ -1107,8 +1160,13 @@ h2 {
     border: 1px solid #0C0C0E; 
 }
 
+.get__form_profile{
+    display: none;
+}    
+
 .get__form_signup:hover, .get__form_signup:focus, .get__form_signup:active,
-.get__form_login:hover, .get__form_login:focus, .get__form_login:active
+.get__form_login:hover, .get__form_login:focus, .get__form_login:active,
+.get__form_profile:hover, .get__form_profile:focus, .get__form_profile:active
 {
     background: #BB945F;
     border: 1px solid #BB945F;
@@ -1538,8 +1596,8 @@ h2 {
 
 .rented__list{
     padding-left: 30px; 
-    max-width: 400px;
-    max-height: 63px;
+    width: 380px;
+    height: 80px;
     overflow: auto;
 }
 
@@ -1557,7 +1615,7 @@ h2 {
 }
 
 .card__text{
-    padding: 40px 0;
+    padding: 20px 0 40px 0;
     color: #0C0C0E;
     font-family: Inter;
     font-size: 20px;

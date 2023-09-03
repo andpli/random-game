@@ -198,6 +198,7 @@ var spanRegister = document.querySelector(".register__span");
 var spanLogin = document.querySelector(".login__span");
 var getFormSignup = document.querySelector(".get__form_signup");
 var getFormLogin = document.querySelector(".get__form_login");
+var getFormProfile = document.querySelector(".get__form_profile");
 var close = document.querySelectorAll(".close__button");
 var cardNumber = document.querySelector(".card__number");
 var copyCardButton = document.querySelector(".copy__card");
@@ -225,6 +226,7 @@ body.classList.remove('lock');
 
 bookBuyBtn.forEach(el => el.addEventListener('click', () => {clickBookBuy(el);}));
 itemMyProfile.addEventListener("click", () => {openModal(modalMyProfile)});
+getFormProfile.addEventListener("click", () => {openModal(modalMyProfile)});
 spanLogin.addEventListener("click", () => {openModal(modalLogIn)});
 spanRegister.addEventListener("click", () => {openModal(modalRegister)});
 itemLogin.addEventListener("click", () => {openModal(modalLogIn)});
@@ -286,7 +288,7 @@ function startRegistration() {
   const lname = document.querySelector("#lastname").value;
   const email = document.querySelector("#email").value;
   const pwd = document.querySelector("#password-reg").value;
-  const hex = getRandomHexValue();
+  const hex = getRandomHexValue().toUpperCase();
   if (localStorage.usersBPL !== undefined) {
     arr = JSON.parse(localStorage.getItem("usersBPL"));
   }
@@ -312,6 +314,9 @@ function logOut() {
   sessionStorage.removeItem('currentBPL');
   closeProfileMenu();
   profileMenu = document.querySelector(".profile_login");
+  document.querySelector(".find__form_readername").value = '';
+  document.querySelector(".find__form_cardnumber").value = '';
+ 
   location.reload();
   return true;
 }
@@ -359,11 +364,30 @@ function setValues(obj) {
     if (oldNode !== undefined)
     profile.replaceChild(newNode, oldNode);
   }
+  
+  document.querySelector(".find__form_submitbox").style.display = 'none';
+  document.querySelector(".find__form-container").style.display = 'flex';
+  document.querySelector(".find__form_name").textContent = 'Your Library card';
+  document.querySelector(".find__form_readername").value = obj.firstName + ' ' +
+  obj.lastName;
+  document.querySelector(".find__form_readername").style.color = '#BB945F';
+  document.querySelector(".find__form_readername").readOnly = true;
+  document.querySelector(".find__form_cardnumber").value = obj.cardNumber;
+  document.querySelector(".find__form_cardnumber").style.color = '#BB945F';
+  document.querySelector(".find__form_cardnumber").readOnly = true;
+ 
+  document.querySelector(".get__form_name").textContent = 'Visit your profile';
+  document.querySelector(".get__form_label").textContent = 'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+  document.querySelector(".get__form_signup").style.display = 'none';
+  document.querySelector(".get__form_login").style.display = 'none';
+  document.querySelector(".get__form_profile").style.display = 'block';
 
   document.querySelector(".small").textContent = obj.cardNumber;
   document.querySelector(".card__number").textContent = obj.cardNumber;
   document.querySelector(".visits").textContent = obj.visits;
   document.querySelector(".books").textContent = obj.books.length;
+  document.querySelector(".ff-visits").textContent = obj.visits;
+  document.querySelector(".ff-books").textContent = obj.books.length;
   document.querySelector(".name__full").textContent = obj.firstName + ' ' +
                                                       obj.lastName;
   document.querySelector(".name__simple").textContent = obj.firstName[0] +
@@ -382,8 +406,11 @@ function setValues(obj) {
     newNode.appendChild(elemText);
     rentedList.appendChild(newNode);
     bookBuyBtn[obj.books[li][0]].classList.add('own__book_btn');
-  }; 
-
+    console.log(bookBuyBtn[obj.books[li][0]]);
+    bookBuyBtn[obj.books[li][0]].textContent = 'Own';
+    bookBuyBtn[obj.books[li][0]].disabled = true;
+  }
+  rentedList.scrollTop = 0;
 }
 
 function getCurrentUser() {
