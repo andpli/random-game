@@ -22,9 +22,10 @@ const toggleBurger = (action) => {
 if  (burgerMenuButton) {
   burgerMenuButton.addEventListener("click", () => {toggleBurger("toggle")} );
 }
-
+document.querySelector('.logo').addEventListener("click", () => {closeMenu();});
+document.querySelector('.header__nav').addEventListener("click", () => {closeMenu();});
 overlay.addEventListener("click", () => {closeMenu();});
-headerLinks.forEach(link => link.addEventListener('click', () => {toggleBurger("remove")}));
+headerLinks.forEach(link => link.addEventListener('click', () => {closeMenu();}));
 /************/
 
 function closeMenu() {
@@ -34,13 +35,9 @@ function closeMenu() {
 
 
 
-
-
 const label = document.querySelectorAll(".label");
 const favorites = document.querySelectorAll(".favorites__set");
 const seasonsInp = document.querySelectorAll(".season__input");
-
-
 
 const fadeIn = (el, timeout) => {
   el.style.opacity = 0; 
@@ -61,23 +58,22 @@ const fadeOut = (el, timeout) => {
 };
 
  function changeSeason(){
-  currentSeason++;
-  if (currentSeason > 4) {currentSeason = 1;}
+  // currentSeason++;
+  currentSeason = 1;
   seasonsInp.forEach(el => el.checked = false);
   let curElement = document.querySelector(`#season_id${currentSeason}`);
   curElement.checked = true;
   favorites.forEach((item) => {
-    if (item.style.display != 'none')
-    { fadeOut(item, 1000)}  else
-    {item.style = 'display: none;'};
+    item.style.opacity = 0;
+    item.style = 'display: none';
   }); 
-  fadeIn(document.querySelector(`#set_${curElement.parentElement.innerText.toLowerCase()}`),3000);
-  setTimeout(changeSeason, 5000);
+  fadeIn(document.querySelector(`#set_${curElement.parentElement.innerText.toLowerCase()}`),100);
+  // setTimeout(changeSeason, 5000);
   
 }
 
 let currentSeason = 0;
-// changeSeason();
+changeSeason();
 
 label.forEach(el => el.addEventListener('click', function(e) {
   
@@ -86,12 +82,11 @@ label.forEach(el => el.addEventListener('click', function(e) {
   currentSeason = this.children[0].id.slice(-1);
 
   favorites.forEach((item) => {
-     if (item.style.display != 'none')
-       { fadeOut(item, 1000)}  else
-       {item.style = 'display: none;'};
-
+   
+    if (item.style.display != 'none')
+       { fadeOut(item, 1000)}
   }); 
-   fadeIn(document.getElementById(`set_${this.innerText.toLowerCase()}`), 2000);
+  fadeIn(document.getElementById(`set_${this.innerText.toLowerCase()}`), 2000);
  }));
 
 /************/
@@ -157,8 +152,8 @@ const setPosition = () => {
 const checkBtns = () => {
   btnPrev.disabled = position === 0;
   btnNext.disabled = position <= -(itemsCount - slidesToShow) * itemWidth;
-  btnPrev.style.opacity = btnPrev.disabled ? 0 : 1;
-  btnNext.style.opacity = btnNext.disabled ? 0 : 1;
+  btnPrev.style.opacity = btnPrev.disabled ? 0.2 : 1;
+  btnNext.style.opacity = btnNext.disabled ? 0.2 : 1;
   btnPrev.style.cursor = btnPrev.disabled ? "default" : "pointer";
   btnNext.style.cursor = btnNext.disabled ? "default" : "pointer";
 }
@@ -199,6 +194,7 @@ var spanLogin = document.querySelector(".login__span");
 var getFormSignup = document.querySelector(".get__form_signup");
 var getFormLogin = document.querySelector(".get__form_login");
 var getFormProfile = document.querySelector(".get__form_profile");
+var findFormSubmit = document.querySelector(".find__form_submit");
 var close = document.querySelectorAll(".close__button");
 var cardNumber = document.querySelector(".card__number");
 var copyCardButton = document.querySelector(".copy__card");
@@ -219,6 +215,7 @@ function closeModal(modal) {
 if (modal != '') {
   modal.scrollTop = 0;
   modal.classList.remove("show");
+  hideError();
 }
 modalBack.classList.remove("show");
 body.classList.remove('lock');
@@ -227,20 +224,20 @@ body.classList.remove('lock');
 bookBuyBtn.forEach(el => el.addEventListener('click', () => {clickBookBuy(el);}));
 itemMyProfile.addEventListener("click", () => {openModal(modalMyProfile)});
 getFormProfile.addEventListener("click", () => {openModal(modalMyProfile)});
-spanLogin.addEventListener("click", () => {openModal(modalLogIn)});
-spanRegister.addEventListener("click", () => {openModal(modalRegister)});
-itemLogin.addEventListener("click", () => {openModal(modalLogIn)});
-itemRegister.addEventListener("click", () => {openModal(modalRegister)});
-getFormLogin.addEventListener("click", () => {openModal(modalLogIn)});
-getFormSignup.addEventListener("click", () => {openModal(modalRegister)});
+spanLogin.addEventListener("click", () => {clickLogIn();});
+itemLogin.addEventListener("click", () => {clickLogIn();});
+getFormLogin.addEventListener("click", () => {clickLogIn();});
+spanRegister.addEventListener("click", () => {clickSignUp();});
+itemRegister.addEventListener("click", () => {clickSignUp();});
+getFormSignup.addEventListener("click", () => {clickSignUp();});
 copyCardButton.addEventListener("click",() => {navigator.clipboard.writeText(cardNumber.textContent)});
-registerButton.addEventListener("click",() => {startRegistration()});
-itemLogout.addEventListener("click",() => {logOut()});
-loginButton.addEventListener("click",() => {logIn()});
-buyCardButton.addEventListener("click",() => {processBuyCard()});
-
-close.forEach(link => link.addEventListener('click', () => {closeModal(prevModal)}));
-modalBack.addEventListener("click", () => { closeModal(prevModal)});
+registerButton.addEventListener("click",() => {signUp();});
+itemLogout.addEventListener("click",() => {logOut();});
+loginButton.addEventListener("click",() => {logIn();});
+buyCardButton.addEventListener("click",() => {processBuyCard();});
+findFormSubmit.addEventListener("click",() => {findCard();});
+close.forEach(link => link.addEventListener('click', () => {closeModal(prevModal);}));
+modalBack.addEventListener("click", () => { closeModal(prevModal);});
 
 let profileMenu = '';
 
@@ -256,8 +253,8 @@ profile.forEach(link => link.addEventListener('click', () => {
 
 function openProfileMenu(link) {
   toggleBurger("remove");
-  link.classList.add("active");
-  profileMenu.classList.add("active");
+  link.classList.toggle("active");
+  profileMenu.classList.toggle("active");
 }
 
 //let profileActive = document.querySelector(".profile.active");
@@ -280,25 +277,47 @@ function getRandomHexValue() {
   }
   return res;
 }
-  
-function startRegistration() {
+function clickLogIn() {
+  openModal(modalLogIn);
+}
+
+function clickSignUp() {
+  openModal(modalRegister);
+}
+
+function signUp() {
   if (sessionStorage.getItem('currentBPL') !== null ) return;
   let arr = [];
   const fname = document.querySelector("#firstname").value;
   const lname = document.querySelector("#lastname").value;
   const email = document.querySelector("#email").value;
   const pwd = document.querySelector("#password-reg").value;
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!email || !pwd || !fname || !lname) {
+    showError('Please fill in all the required fields.');
+    return;
+  }
+
+  if (regex.test(email) == false) {
+    showError('Email is invalid.');
+    return;
+  }
+
+  if (pwd.length < 8) {
+    showError('Password must have at least 8 characters.');
+    return;
+  }
+  
   const hex = getRandomHexValue().toUpperCase();
   if (localStorage.usersBPL !== undefined) {
     arr = JSON.parse(localStorage.getItem("usersBPL"));
   }
   
   if (arr.some((el) => el.email === email)) {
-    alert(email + ' already registered'); return;
+    showError('This email is already in use.');
+    return;
   }
   sessionStorage.setItem('currentBPL', hex);
-  
-  alert(hex);
   
   let arrlen = arr.length;
   arr.push({firstName: fname, lastName: lname,
@@ -308,6 +327,9 @@ function startRegistration() {
           });
   setValues(arr[arrlen]);             
   localStorage.setItem("usersBPL", JSON.stringify(arr));
+  profileMenu = document.querySelector(".profile_logout");
+  closeModal(prevModal);
+  alert('You have successfully registered. Your card number is ' + hex);
 }
 
 function logOut() {
@@ -316,7 +338,8 @@ function logOut() {
   profileMenu = document.querySelector(".profile_login");
   document.querySelector(".find__form_readername").value = '';
   document.querySelector(".find__form_cardnumber").value = '';
- 
+  document.querySelector(".register__form").reset();
+  document.querySelector(".login__form").reset();
   location.reload();
   return true;
 }
@@ -328,10 +351,20 @@ function logIn() {
   const email = document.querySelector("#emailcard").value;
   const pwd = document.querySelector("#password-log").value;
 
+  if (!email || !pwd) {
+    showError('Please fill in all the required fields.');
+    return;
+  }
+
+  if (pwd.length < 8) {
+    showError('Password must have at least 8 characters.');
+    return;
+  }
+
   if (localStorage.usersBPL !== undefined) {
     arr = JSON.parse(localStorage.getItem("usersBPL"));
   } else return;
-
+  
   let lbFlag = false;
   for (let li = 0; li < arr.length; li += 1) {
     console.log(arr[li]);
@@ -341,18 +374,23 @@ function logIn() {
       sessionStorage.setItem('currentBPL', arr[li].cardNumber);
       arr[li].visits += 1;
       localStorage.setItem("usersBPL", JSON.stringify(arr));
-      setValues(arr[li]);                                                    
+      setValues(arr[li]);   
       profileMenu = document.querySelector(".profile_logout");
       closeModal(prevModal);
+      alert('You have successfully logged in to your account.');
+
     }
   }
-  if (lbFlag === false) {alert('incorrect user/password')}
+  if (lbFlag === false) {
+    showError('Invalid user/password. Please try again.');
+    document.querySelector("#password-log").value = '';
+  }
   
   
 }
 
 function setValues(obj) {
-
+  if (!obj) return;
   for (let li = 0; li < 2; li++) {
     let profile = document.querySelectorAll(".profile")[li];
     let oldNode = document.querySelectorAll(".profile__logo")[0];
@@ -368,8 +406,8 @@ function setValues(obj) {
   document.querySelector(".find__form_submitbox").style.display = 'none';
   document.querySelector(".find__form-container").style.display = 'flex';
   document.querySelector(".find__form_name").textContent = 'Your Library card';
-  document.querySelector(".find__form_readername").value = obj.firstName + ' ' +
-  obj.lastName;
+  document.querySelector(".find__form_readername").value =
+  obj.firstName + ' ' + obj.lastName;
   document.querySelector(".find__form_readername").style.color = '#BB945F';
   document.querySelector(".find__form_readername").readOnly = true;
   document.querySelector(".find__form_cardnumber").value = obj.cardNumber;
@@ -388,13 +426,14 @@ function setValues(obj) {
   document.querySelector(".books").textContent = obj.books.length;
   document.querySelector(".ff-visits").textContent = obj.visits;
   document.querySelector(".ff-books").textContent = obj.books.length;
-  document.querySelector(".name__full").textContent = obj.firstName + ' ' +
-                                                      obj.lastName;
-  document.querySelector(".name__simple").textContent = obj.firstName[0] +
-                                                        obj.lastName[0]; 
-  
+  document.querySelector(".name__full").textContent = 
+  obj.firstName + ' ' + obj.lastName;
+  document.querySelector(".name__simple").textContent = 
+  obj.firstName[0] + obj.lastName[0]; 
+                                                    
   let rentedList = document.querySelector(".rented__list");
   let rentedItems = document.querySelectorAll(".rented__item");
+
   for (let li = 0; li < rentedItems.length; li++){
     rentedList.removeChild(rentedItems[li]);
   }; 
@@ -406,11 +445,27 @@ function setValues(obj) {
     newNode.appendChild(elemText);
     rentedList.appendChild(newNode);
     bookBuyBtn[obj.books[li][0]].classList.add('own__book_btn');
-    console.log(bookBuyBtn[obj.books[li][0]]);
     bookBuyBtn[obj.books[li][0]].textContent = 'Own';
     bookBuyBtn[obj.books[li][0]].disabled = true;
   }
+  /*
+  rentedList.style.height = '1000px';
+  rentedList.style.overflow = 'hidden';
+  rentedList.style.height = '80px';
+  rentedList.style.overflow = 'auto';
   rentedList.scrollTop = 0;
+  rentedList.scroll(0,0);*/
+  console.log('scroll');
+
+}
+
+function isRegistered(){
+  let arr = [];
+  if (localStorage.usersBPL !== undefined) {
+      arr = JSON.parse(localStorage.getItem("usersBPL"));
+      return (arr.length > 0);
+  }
+  return false;
 }
 
 function getCurrentUser() {
@@ -423,7 +478,6 @@ function getCurrentUser() {
   
   for (let li = 0; li < arr.length; li++ ) {
     if (arr[li].cardNumber === sessionStorage.getItem('currentBPL')) {
-      // setValues(arr[li]); 
       return arr[li];
     }
   }
@@ -432,16 +486,15 @@ function getCurrentUser() {
 
 function clickBookBuy(el) {
   let obj = getCurrentUser();
-  console.log(obj);
   if (obj !== undefined) {
     if (obj.cardExists === 0) {
       openModal(modalBuyCard);}
       else {processBuyBook(Array.prototype.indexOf.call(bookBuyBtn, el));}
-  }
+  } else if (isRegistered()) clickLogIn();
 }
 
 function processBuyCard() {
-  //checkFields
+  if (checkCardFields() == false) return false;
   let idx = -1;
   let arr = JSON.parse(localStorage.getItem("usersBPL"));
   for (let li = 0; li < arr.length; li++ ) {
@@ -451,6 +504,8 @@ function processBuyCard() {
   }
   localStorage.setItem("usersBPL", JSON.stringify(arr));
   if (idx >= 0) setValues(arr[idx]);
+  closeModal(prevModal);
+  document.querySelector(".buycard__form").reset();
   return true;
 }
 
@@ -459,8 +514,6 @@ function processBuyBook(btn) {
   let pos = auth.indexOf('By ');
   auth = auth.substring(pos + 3);
   let book =  document.querySelectorAll(".book__name")[btn].textContent.trim();
-  console.log(book);
-  console.log(auth);
   pos = -1;
   let arr = JSON.parse(localStorage.getItem("usersBPL"));
   for (let li = 0; li < arr.length; li++ ) {
@@ -474,3 +527,118 @@ function processBuyBook(btn) {
 
   return true;
 }
+
+function findCard() {
+  if (checkCard()) {
+  document.querySelector(".find__form_submitbox").style.display = 'none';
+  document.querySelector(".find__form-container").style.display = 'flex';
+  document.querySelector(".find__form_readername").style.color = '#BB945F';
+  document.querySelector(".find__form_readername").readOnly = true;
+  document.querySelector(".find__form_cardnumber").style.color = '#BB945F';
+  document.querySelector(".find__form_cardnumber").readOnly = true;
+  setTimeout(() => updateFindForm(), 10000);
+  }
+}
+
+function checkCard() {
+  let userName = document.querySelector(".find__form_readername").value;
+  let userCardNumber = document.querySelector(".find__form_cardnumber").value;
+  let lcNames = '';
+  let arr = JSON.parse(localStorage.getItem("usersBPL"));
+  if (arr) {
+    for (let li = 0; li < arr.length; li++ ) {
+      lcNames = arr[li].firstName + ' ' + arr[li].lastName;
+      if (arr[li].cardNumber.toUpperCase() === userCardNumber.toUpperCase() 
+      && lcNames.toUpperCase() === userName.toUpperCase()) {
+        document.querySelector(".find__form_readername").value = lcNames;
+        document.querySelector(".find__form_cardnumber").value = arr[li].cardNumber;
+        document.querySelector(".ff-visits").textContent = arr[li].visits;
+        document.querySelector(".ff-books").textContent = arr[li].books.length;
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function updateFindForm(){
+  document.querySelector(".find__form_readername").value = '';
+  document.querySelector(".find__form_cardnumber").value = '';
+  document.querySelector(".find__form_submitbox").style.display = 'block';
+  document.querySelector(".find__form-container").style.display = 'none';
+  document.querySelector(".find__form_readername").style.color = '#8E8E8E';
+  document.querySelector(".find__form_readername").readOnly = false; 
+  document.querySelector(".find__form_cardnumber").style.color = '#8E8E8E';
+  document.querySelector(".find__form_cardnumber").readOnly = false;
+  return true;
+}
+
+function hideError() {
+  let errorBox = document.querySelectorAll(".error__box");
+  for(let li = 0; li < errorBox.length; li++) {
+    errorBox[li].classList.remove("error__active"); 
+  }
+}
+
+function showError(errMess) {
+  let errorBox = document.querySelectorAll(".error__box");
+  for(let li = 0; li < errorBox.length; li++) {
+    errorBox[li].textContent = errMess;
+    errorBox[li].classList.add("error__active");
+  }  
+}
+
+function checkCardFields() {
+  const card = document.querySelector("#bankcard").value;
+  const month = document.querySelector("#month").value;
+  const year = document.querySelector("#year").value;
+  const cvc = document.querySelector("#cvc").value;
+  const cardholder = document.querySelector("#cardholder").value;
+  const pcode = document.querySelector("#pcode").value;
+  const city = document.querySelector("#city").value;
+  if (!card || !month || !year || !cvc || !cardholder || !pcode || !city) {
+    showError('Please fill in all the required fields.');
+    return false;
+  }
+  
+  let regex = /^[0-9]{16}$/;
+    if (!regex.test(card)) {
+    showError('Bank card number is invalid.');
+    return false;
+  }
+  
+  regex = /^[0-9]{2}$/;
+  num_check = Number(month);
+  if (!regex.test(month) || num_check > 12 || num_check < 1) {
+    showError('Month (Expiration code) is invalid.');
+    return false;
+  }
+ 
+  if (!regex.test(year)) {
+    showError('Year (Expiration code) is invalid.');
+    return false;
+  }
+
+  regex = /^[0-9]{3}$/;
+  if (!regex.test(cvc)) {
+    showError('CVC is invalid.');
+    return false;
+  }
+
+  return true;
+}
+
+// hide errors on input
+document.querySelector('#emailcard').addEventListener("input",() => {hideError()});
+document.querySelector('#password-log').addEventListener("input",() => {hideError()});
+document.querySelector('#firstname').addEventListener("input",() => {hideError()});
+document.querySelector('#lastname').addEventListener("input",() => {hideError()});
+document.querySelector('#email').addEventListener("input",() => {hideError()});
+document.querySelector('#password-reg').addEventListener("input",() => {hideError()});
+document.querySelector('#bankcard').addEventListener("input",() => {hideError()});
+document.querySelector('#month').addEventListener("input",() => {hideError()});
+document.querySelector('#year').addEventListener("input",() => {hideError()});
+document.querySelector('#cvc').addEventListener("input",() => {hideError()});
+document.querySelector('#cardholder').addEventListener("input",() => {hideError()});
+document.querySelector('#pcode').addEventListener("input",() => {hideError()});
+document.querySelector('#city').addEventListener("input",() => {hideError()});

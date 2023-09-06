@@ -150,24 +150,30 @@ img {
     line-height: 50px; /* 166.667% */
     letter-spacing: 0.6px; 
     text-decoration: none;
+    flex: 1;
 }
 
 .profile {
     margin: 31px 0;
     cursor: pointer;
-
+    border-radius: 50%;
 }
 
+.profile__img{
+    border-radius: 50%;
+}
 
 .profile__img:hover{
-      border-radius: 50%;
       background: #BB945F;
       transition: 0.6s;
 }
 
 .profile.active {
-    background: #BB945F;
-    border-radius: 50%;
+    .profile__img {background: #BB945F;}
+    .profile__logo-text {
+        background: #BB945F;
+        color: white;
+    }
 }
 
 .profile__logo-text{
@@ -180,7 +186,7 @@ img {
     align-items: center;
     color: #BB945F;
     font-family: Inter;
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
@@ -430,10 +436,19 @@ h2 {
     align-items: flex-end;
 }
 
-
-.arrows:hover{
-    background-color: #BB945F;
+.arrows{
     border-radius: 50%;
+}
+
+.btnPrev, .btnNext{
+    border-radius: 50%;
+    background: transparent;
+    border: 0;
+}
+
+.btnPrev:not([disabled]):hover, .btnNext:not([disabled]):hover{
+    background-color: #BB945F;
+    transition: 0.6s;
 }
 
 .slider__container{
@@ -512,6 +527,10 @@ h2 {
 
 /***********************/
 
+.fav__wrapper{
+    overflow: visible; 
+}
+
 .pick__season{
     padding: 41px 0;
     font-family: Inter;
@@ -542,9 +561,10 @@ h2 {
 }
 
 .label {
-    border: 5px solid #FFFFFF;
+    border: 5px solid transparent;
     cursor: pointer;
     flex-shrink: 0;
+    background: transparent;
 }
 
 .season__input {
@@ -602,20 +622,42 @@ h2 {
 .autumn {
     width: 127px;
 }
+
+.favorites__container{
+    display: flex;
+    flex-direction: column;
+    height: 1230px;
+}
   
 .favorites__set {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 260px;
+  /*  gap: 260px; */
     row-gap: 40px;
-    padding: 40px 0;
+    padding: 40px 40px 40px 0;
+    justify-content: space-between;
 }
 
-@media  (max-width: 1425px) {
+
+@media  (max-width: 1220px) {
+    .seasons__labels{
+        position: sticky;
+        top: 0;
+        z-index: 6;
+        background-color: #fff;
+    }
+
     .favorites__set {
        padding: 40px 40px 40px 0; 
        justify-content: center;
+       gap: 40px;
+    }
+
+    .favorites__container{
+        display: flex;
+        flex-direction: column;
+        height: 2420px;
     }
  }
 
@@ -1264,17 +1306,17 @@ h2 {
 }
 
 .modal {
+   display: none;
     z-index: 8;
     position: fixed;
     top: 50%;
-    transform: translateY(-50%);
     margin: auto;
     align-self: center;
     background-color: #fff;
-    display: none;
     flex-direction: column;
-    transition: .3s;
-    opacity: 1;
+    opacity: 0;
+    transition: opacity .3s;
+    transform:  translateY(-50%);
 }
 
 .close__button {
@@ -1311,11 +1353,18 @@ h2 {
 }
 
 .show {
-    display: flex;
+   opacity: 1; 
+   display: flex;
 }
 
+/*
 .modal__register, .modal__login{
-    padding: 20px 25px;
+    padding: 20px 25px; 
+}
+*/
+
+.register__form, .login__form{
+    margin: 20px 25px 0 25px;
 }
 
 .modal__register{
@@ -1381,15 +1430,16 @@ h2 {
     font-weight: 700;
     line-height: normal;
     letter-spacing: 1px; 
-    cursor: pointer;
+    
 }
 
 .register__button:hover, .register__button:focus, 
 .login__button:hover, .login__button:focus, 
-.buy__button:hover, .buy__button:focus{
+.buy__button:not([disabled]):hover, .buy__button:focus{
     background: #BB945F;
     border: 1px solid #BB945F;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .login__message, .register__message{
@@ -1400,6 +1450,7 @@ h2 {
     font-style: normal;
     font-weight: 400;
     line-height: normal; 
+    padding-left: 25px;
 }
 
 .login__span, .register__span{
@@ -1422,6 +1473,25 @@ h2 {
     transition: 0.5s;
 }
 
+.error__box{
+    display: none;
+    width: 100%;
+    background-color: red;
+    color: white;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+    text-align: center;
+    margin-top: 8px;
+}
+.error__card{
+    margin-top: -2px;
+}
+.error__active{
+    display: block;
+}
 .modal__buycard{
         width: 640px;
         height: 540px;
@@ -1648,7 +1718,6 @@ h2 {
 }
 
 .profile__menu {
-    display: none;
     position: absolute;
     top: 60px;
     right: 20px;
@@ -1656,6 +1725,9 @@ h2 {
     height: 115px;
     background-color: white;
     z-index: 5;
+    transform: scale(0.4,0);
+    transform-origin: right top;
+    transition: 0.2s;
 }
 
 @media  (max-width: 1024px) {
@@ -1691,7 +1763,7 @@ h2 {
 }
 
 .profile__menu.active {
-    display: block;
+    transform: scale(1);
 }
 
 .profile__menu-item{
