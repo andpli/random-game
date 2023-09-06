@@ -38,10 +38,10 @@ function closeMenu() {
 const label = document.querySelectorAll(".label");
 const favorites = document.querySelectorAll(".favorites__set");
 const seasonsInp = document.querySelectorAll(".season__input");
+var bookBuyBtn = document.querySelectorAll(".book__buy_btn");
 
 const fadeIn = (el, timeout) => {
   el.style.opacity = 0; 
-  el.style.display = 'flex';
   el.style.transition = `opacity ${timeout}ms`;
   setTimeout(() =>  {
     el.style.opacity = 1;
@@ -53,40 +53,42 @@ const fadeOut = (el, timeout) => {
   el.style.transition = `opacity ${timeout}ms`;
   el.style.opacity = 0;
   setTimeout(() =>  {
-    el.style.display = 'none';
   }, timeout);
 };
 
- function changeSeason(){
-  // currentSeason++;
+function initSeason(){
   currentSeason = 1;
   seasonsInp.forEach(el => el.checked = false);
-  let curElement = document.querySelector(`#season_id${currentSeason}`);
-  curElement.checked = true;
-  favorites.forEach((item) => {
-    item.style.opacity = 0;
-    item.style = 'display: none';
-  }); 
-  fadeIn(document.querySelector(`#set_${curElement.parentElement.innerText.toLowerCase()}`),100);
-  // setTimeout(changeSeason, 5000);
-  
+  document.querySelector('#season_id1').checked = true;;
+  favorites.forEach(el => el.style.opacity = 0); 
+  favorites[0].style.opacity = 1;
+  console.log(bookBuyBtn);
+  bookBuyBtn.forEach((el, idx) =>{if (idx < 4) {el.style.zIndex = 2;}
+  });
 }
 
 let currentSeason = 0;
-changeSeason();
+let previousSeason = 0;
+initSeason();
 
-label.forEach(el => el.addEventListener('click', function(e) {
+label.forEach(el => el.addEventListener('click', function() {
   
   if (currentSeason == this.children[0].id.slice(-1)) {return};
-
+  previousSeason = currentSeason;
   currentSeason = this.children[0].id.slice(-1);
 
-  favorites.forEach((item) => {
-   
-    if (item.style.display != 'none')
-       { fadeOut(item, 1000)}
+  bookBuyBtn.forEach((el, idx) =>{
+    el.style.zIndex = 0;
+    if  (idx >= (currentSeason * 4 - 4) && idx < (currentSeason * 4)) {
+      el.style.zIndex = 2;
+    }
+  });
+
+  favorites.forEach((item,idx) => {
+    if (idx === (previousSeason - 1))
+       { fadeOut(item, 2000)}
   }); 
-  fadeIn(document.getElementById(`set_${this.innerText.toLowerCase()}`), 2000);
+  fadeIn(document.querySelector(`#set_${this.innerText.toLowerCase()}`), 2000);
  }));
 
 /************/
@@ -183,7 +185,6 @@ var modalRegister = document.querySelector("#modalRegister");
 var modalLogIn = document.querySelector("#modalLogIn");
 var modalBuyCard = document.querySelector("#modalBuyCard");
 var modalMyProfile = document.querySelector("#modalMyProfile");
-var bookBuyBtn = document.querySelectorAll(".book__buy_btn");
 var modalBack = document.querySelector(".modal-background");
 var itemRegister = document.querySelector("#item__register");
 var itemLogin = document.querySelector("#item__login");
@@ -456,7 +457,6 @@ function setValues(obj) {
   rentedList.scrollTop = 0;
   rentedList.scroll(0,0);*/
   console.log('scroll');
-
 }
 
 function isRegistered(){
@@ -486,6 +486,7 @@ function getCurrentUser() {
 
 function clickBookBuy(el) {
   let obj = getCurrentUser();
+  console.log(obj);
   if (obj !== undefined) {
     if (obj.cardExists === 0) {
       openModal(modalBuyCard);}
@@ -510,6 +511,7 @@ function processBuyCard() {
 }
 
 function processBuyBook(btn) {
+  let alreadyExist = false;
   let auth = document.querySelectorAll(".book__main")[btn].textContent.trim();
   let pos = auth.indexOf('By ');
   auth = auth.substring(pos + 3);
@@ -518,8 +520,12 @@ function processBuyBook(btn) {
   let arr = JSON.parse(localStorage.getItem("usersBPL"));
   for (let li = 0; li < arr.length; li++ ) {
     if (arr[li].cardNumber === sessionStorage.getItem('currentBPL')) {
-      arr[li].books.push([btn, book + ', ' + auth]); 
-      pos = li; break;
+      arr[li].books.forEach(el => {
+        if (el[0] == btn) alreadyExist = true; } 
+      );
+      pos = li;
+      if (!alreadyExist) {arr[li].books.push([btn, book + ', ' + auth])}; 
+      break;
     }
   }
   localStorage.setItem("usersBPL", JSON.stringify(arr));

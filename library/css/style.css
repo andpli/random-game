@@ -627,6 +627,7 @@ h2 {
     display: flex;
     flex-direction: column;
     height: 1230px;
+    position: relative;
 }
   
 .favorites__set {
@@ -637,8 +638,27 @@ h2 {
     row-gap: 40px;
     padding: 40px 40px 40px 0;
     justify-content: space-between;
+    position: absolute;
 }
 
+/*
+#set_winter{
+    z-index: 5;
+}
+
+#set_spring{
+    z-index: 3;
+}
+
+#set_summer{
+    z-index: 4;
+}
+
+#set_autumn{
+    z-index: 2;
+}
+
+*/
 
 @media  (max-width: 1220px) {
     .seasons__labels{
@@ -1682,6 +1702,7 @@ h2 {
     line-height: 20px; /* 100% */
     letter-spacing: 2px;
     text-transform: capitalize; 
+    white-space: nowrap;
 }
 
 .card__text{
@@ -1727,7 +1748,7 @@ h2 {
     z-index: 5;
     transform: scale(0.4,0);
     transform-origin: right top;
-    transition: 0.2s;
+    transition: 0.2s; 
 }
 
 @media  (max-width: 1024px) {
@@ -1752,6 +1773,7 @@ h2 {
     font-size: 12px;
     text-transform: uppercase;
 }
+
 .profile__menu-text::after {
     position: absolute;
     top: 30px;
