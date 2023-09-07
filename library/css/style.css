@@ -542,7 +542,7 @@ h2 {
 .seasons__set{
     margin-top: -5px;
     margin-bottom: -5px;
-    width: 716px;
+    min-width: 640px;
     display: flex;
     flex-wrap: wrap;
     gap: 78px;
