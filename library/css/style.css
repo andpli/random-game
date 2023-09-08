@@ -542,7 +542,6 @@ h2 {
 .seasons__set{
     margin-top: -5px;
     margin-bottom: -5px;
-    min-width: 640px;
     display: flex;
     flex-wrap: wrap;
     gap: 78px;
@@ -620,7 +619,7 @@ h2 {
 }
   
 .autumn {
-    width: 127px;
+    width: 110px;
 }
 
 .favorites__container{
