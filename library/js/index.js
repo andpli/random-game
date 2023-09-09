@@ -62,7 +62,7 @@ function initSeason(){
   document.querySelector('#season_id1').checked = true;;
   favorites.forEach(el => el.style.opacity = 0); 
   favorites[0].style.opacity = 1;
-  console.log(bookBuyBtn);
+  // console.log(bookBuyBtn);
   bookBuyBtn.forEach((el, idx) =>{if (idx < 4) {el.style.zIndex = 2;}
   });
 }
@@ -368,7 +368,7 @@ function logIn() {
   
   let lbFlag = false;
   for (let li = 0; li < arr.length; li += 1) {
-    console.log(arr[li]);
+    // console.log(arr[li]);
     if ((arr[li].email === email || arr[li].cardNumber === email)
       && (arr[li].password === pwd)) {
       lbFlag = true;
@@ -456,7 +456,7 @@ function setValues(obj) {
   rentedList.style.overflow = 'auto';
   rentedList.scrollTop = 0;
   rentedList.scroll(0,0);*/
-  console.log('scroll');
+  // console.log('scroll');
 }
 
 function isRegistered(){
@@ -486,7 +486,7 @@ function getCurrentUser() {
 
 function clickBookBuy(el) {
   let obj = getCurrentUser();
-  console.log(obj);
+  // console.log(obj);
   if (obj !== undefined) {
     if (obj.cardExists === 0) {
       openModal(modalBuyCard);}
