@@ -489,13 +489,15 @@ function clickBookBuy(el) {
   // console.log(obj);
   if (obj !== undefined) {
     if (obj.cardExists === 0) {
-      openModal(modalBuyCard);}
+      isBuyBtnActive();
+      openModal(modalBuyCard); }
       else {processBuyBook(Array.prototype.indexOf.call(bookBuyBtn, el));}
   } else if (isRegistered()) clickLogIn();
 }
 
 function processBuyCard() {
   if (checkCardFields() == false) return false;
+  
   let idx = -1;
   let arr = JSON.parse(localStorage.getItem("usersBPL"));
   for (let li = 0; li < arr.length; li++ ) {
@@ -506,7 +508,7 @@ function processBuyCard() {
   localStorage.setItem("usersBPL", JSON.stringify(arr));
   if (idx >= 0) setValues(arr[idx]);
   closeModal(prevModal);
-  document.querySelector(".buycard__form").reset();
+  // document.querySelector(".buycard__form").reset();
   return true;
 }
 
@@ -641,10 +643,24 @@ document.querySelector('#firstname').addEventListener("input",() => {hideError()
 document.querySelector('#lastname').addEventListener("input",() => {hideError()});
 document.querySelector('#email').addEventListener("input",() => {hideError()});
 document.querySelector('#password-reg').addEventListener("input",() => {hideError()});
-document.querySelector('#bankcard').addEventListener("input",() => {hideError()});
-document.querySelector('#month').addEventListener("input",() => {hideError()});
-document.querySelector('#year').addEventListener("input",() => {hideError()});
-document.querySelector('#cvc').addEventListener("input",() => {hideError()});
-document.querySelector('#cardholder').addEventListener("input",() => {hideError()});
-document.querySelector('#pcode').addEventListener("input",() => {hideError()});
-document.querySelector('#city').addEventListener("input",() => {hideError()});
+document.querySelector('#bankcard').addEventListener("input",() => {hideError(); isBuyBtnActive();});
+document.querySelector('#month').addEventListener("input",() => {hideError(); isBuyBtnActive();});
+document.querySelector('#year').addEventListener("input",() => {hideError(); isBuyBtnActive();});
+document.querySelector('#cvc').addEventListener("input",() => {hideError(); isBuyBtnActive();});
+document.querySelector('#cardholder').addEventListener("input",() => {hideError(); isBuyBtnActive();});
+document.querySelector('#pcode').addEventListener("input",() => {hideError(); isBuyBtnActive();});
+document.querySelector('#city').addEventListener("input",() => {hideError(); isBuyBtnActive();});
+
+function isBuyBtnActive() {
+  const card = document.querySelector("#bankcard").value;
+  const month = document.querySelector("#month").value;
+  const year = document.querySelector("#year").value;
+  const cvc = document.querySelector("#cvc").value;
+  const cardholder = document.querySelector("#cardholder").value;
+  const pcode = document.querySelector("#pcode").value;
+  const city = document.querySelector("#city").value;
+  if (!card || !month || !year || !cvc || !cardholder || !pcode || !city) {
+    buyCardButton.disabled = true;
+  } else buyCardButton.disabled = false;
+  return buyCardButton.disabled; 
+}
