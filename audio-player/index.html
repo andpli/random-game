@@ -5,13 +5,46 @@
     <meta name="viewport" content="width=device-width">
     <title>audio-player</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/icons/icons-64.png">
 </head>
 <body>
-  <header class="header">
+  <header class="header" >
   </header>
   <main> 
+    <audio src="assets/osen.mp3"></audio>
+    <div class="player">
+        <div class="imgbox">
+          <img class="alb" src="assets/alb/0/1.jpg">
+        </div>
+        <div style="padding-left: 60px;">     
+            <div class="artist"> </div>
+            <div class="song"></div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="volume" style="width: 100px;">
+        <div style="padding: 0 50px;">
+            <input type="range" min="0" max="100" value="0" class="duration">
+            <div style="display: flex; justify-content: space-between;">
+              <div class="current">00:00</div>
+              <div class="total">00:00</div>
+            </div>
+        </div>
+        <button class="btn prev" title="Previous Track" style="margin-left: 110px;"></button>
+        <button class="btn tostart" title="" style="display: none;"></button>
+        <button id="play" class="btn play" title="Play"></button>
+        <button class="btn stop" title="Stop"></button>
+        <button class="btn next" title="Next Track"></button>
+        <button id="vol" class="btn on mute" title="Mute"></button>
+    </div>
   </main>
   <footer class="footer">
+
+    <div class="fcontainer">
+      <div style="display: flex; flex-direction: column; gap: 5px; align-items: center;">
+        <span>2023</span>
+        <a href="https://github.com/andpli"><img class="git_img" src="assets/icons/git.svg" alt="git"></a>
+      </div>
+      <a href="https://rs.school/js-stage0/"><img class="rs_img" src="assets/icons/rs_school_js.svg" alt="rsschool"></a>
+    </div>
   </footer>
   <script src="js/index.js"></script>
 </body>
