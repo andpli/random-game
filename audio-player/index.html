@@ -11,8 +11,9 @@
   <header class="header" >
   </header>
   <main> 
-    <audio src="assets/osen.mp3"></audio>
+    <audio src="assets/mp3/inna-hot.mp3"></audio>
     <div class="player">
+      <div class="player_main">
         <div class="imgbox">
           <img class="alb" src="assets/alb/0/1.jpg">
         </div>
@@ -23,19 +24,26 @@
         <input type="range" min="0" max="100" value="50" class="volume" style="width: 100px;">
         <div style="padding: 0 50px;">
             <input type="range" min="0" max="100" value="0" class="duration">
-            <div style="display: flex; justify-content: space-between;">
+            <div style="display: flex; justify-content: space-between; width: 300px;">
               <div class="current">00:00</div>
               <div class="total">00:00</div>
             </div>
         </div>
+        <button id="vol" class="btn on mute" title="Mute"></button>
         <button class="btn prev" title="Previous Track" style="margin-left: 110px;"></button>
         <button class="btn tostart" title="" style="display: none;"></button>
         <button id="play" class="btn play" title="Play"></button>
         <button class="btn stop" title="Stop"></button>
         <button class="btn next" title="Next Track"></button>
-        <button id="vol" class="btn on mute" title="Mute"></button>
+        <button  class="btn list" title="Playlist"></button>
+      </div>
+      <div class="player_list">
+        <ul>
+
+        </ul>
+      </div>
     </div>
-  </main>
+    </main>
   <footer class="footer">
 
     <div class="fcontainer">

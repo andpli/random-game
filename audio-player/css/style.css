@@ -65,26 +65,60 @@ body {
 	justify-content: space-between;
 	gap: 10vh;
 }
+main{
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+}
 
 
 .player{
-	position: relative;
+	display: flex;
 	padding-top: 20px;
 	padding-bottom: 5px;
-	margin: 0 auto;
 	min-width: 400px;
 	width: 400px;
 	background: black;
-	opacity: 0.4;
+	opacity: 0.6;
+	transition: all 0.5s;
 }
+
+.player_main{
+	position: relative;
+}
+
 .imgbox{
 	width: 300px;
 	height: 300px;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
 	background-color: black;
 	opacity: 1;
+	padding-left: 50px;
 }
 
+.player_list{
+	opacity: 0;
+	display: flex;
+	overflow: hidden;
+}
+.item{
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+	white-space: nowrap;
+	opacity: 0.6;
+	cursor: pointer;
+}
+
+.item:hover{
+	color: white;
+	opacity: 1;
+	transition: opacity .6s;
+}
+
+.list_time{
+	padding-left: 20px;
+}
 .alb{
 	width: 100%;
 }
@@ -135,8 +169,19 @@ body {
 
 .mute{
 	position: absolute;
-	bottom: 5px;
-	right: 5px;
+	bottom: 0;
+	left: 5px;
+}
+
+.list{
+	position: absolute;
+	bottom: 0;
+	left: 355px;
+	background-image: url("../assets/icons/list-64.png");
+}
+
+.liston, .off, .playon{
+	opacity: 1;
 }
 
 .tostart{
@@ -207,7 +252,7 @@ input[type=range]::-moz-range-thumb {
 
 .volume{
 	position: absolute;
-	right: -25px;
+	left: -25px;
 	bottom: 110px;
 	transform: rotate(-90deg);
 }
@@ -242,3 +287,13 @@ input[type=range]::-moz-range-thumb {
 	transform: scale(110%);
 	transition: 0.4s;
 }	 
+
+@media  (max-width: 850px) {
+	.list {
+	   display: none;
+	}
+	.player_list {
+		display: none;
+	}
+
+}
