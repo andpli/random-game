@@ -49,22 +49,41 @@ table {
 }
 /******************************************************/
 html {
+	position: relative;
     box-sizing: border-box;
+	height: 100%;
 }
 
 body {
+	position: relative;
 	color: lightgray;	
-	height: 100vh;
+	height: 100%;
 	background-image: url("../assets/alb/0/0.jpg"); 
 	background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-	backdrop-filter: blur(10px);
+}
+
+.wrapper{
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	gap: 10vh;
+	gap: 10%;
 }
+
+body::before {
+	content: ""; 
+	position: absolute; 
+	top: 0; left: 0; 
+    right: 0; bottom: 0;
+	background-image: inherit; 
+	filter: blur(10px); 
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 main{
 	display: flex;
 	flex-direction: row;
@@ -180,6 +199,9 @@ main{
 	background-image: url("../assets/icons/list-64.png");
 }
 
+.liston{
+	background-image: url("../assets/icons/listoff-64.png");
+}
 .liston, .off, .playon{
 	opacity: 1;
 }
@@ -295,5 +317,7 @@ input[type=range]::-moz-range-thumb {
 	.player_list {
 		display: none;
 	}
-
+	.player{
+		width: 400px;
+	}
 }

@@ -6,7 +6,7 @@ console.log("Прогресс-бар отображает прогресс пр�
 console.log("Отображается продолжительность аудиотрека и его текущее время проигрывания +10");
 console.log("Очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10");
 
-let iCur = 0;
+let iCur;
 let isPause = true;
 let isList = false;
 let isOn = true;
@@ -58,18 +58,22 @@ audio.addEventListener('timeupdate', () => { timeUpdate(); });
 window.onload = myinit();
 
 function myinit(){
+  iCur = getCurrentTrack();
   audio.src = arr[iCur][0];
   audio.currentTime = 0;
   total.textContent = arr[iCur][1]; 
   artist.textContent = arr[iCur][2];
   song.textContent = arr[iCur][3];
   addList();
+  document.querySelector('body').style.backgroundImage = `url('assets/alb/${iCur}/0.jpg')`;
+  document.querySelector('.alb').srcset = `assets/alb/${iCur}/1.jpg`;
   items = document.querySelectorAll('.item')
   items.forEach(link => link.addEventListener('click', (el) => {
     if (iCur == Array.prototype.indexOf.call(items, el.target)){
       return;
     }
     iCur = Array.prototype.indexOf.call(items, el.target);
+    setCurrentTrack();
     audio.currentTime = 0;
     audio.src = arr[iCur][0];  
     playAudio();
@@ -107,12 +111,16 @@ function showlist(){
 
 
 
-next.addEventListener("click", () => {iCur ++; if (iCur >= arr.length) {iCur = 0};   audio.currentTime = 0;
+next.addEventListener("click", () => {iCur ++; if (iCur >= arr.length) {iCur = 0}; 
+ setCurrentTrack();
+  audio.currentTime = 0;
   audio.src = arr[iCur][0];  
   playAudio();
 });
 
-prev.addEventListener("click", () => {iCur --; if (iCur < 0) {iCur = arr.length - 1};   audio.currentTime = 0;
+prev.addEventListener("click", () => {iCur --; if (iCur < 0) {iCur = arr.length - 1};   
+  setCurrentTrack();
+  audio.currentTime = 0;
   audio.src = arr[iCur][0];
   playAudio();
 });
@@ -210,4 +218,17 @@ function convertTime(time) {
   let min = Math.trunc(time / 60).toString().padStart(2, '0');
   let sec = Math.floor(time % 60).toString().padStart(2, '0');
   return min + ':'+ sec;
+}
+
+function getCurrentTrack(){
+  if (localStorage.getItem('currentTrack') === null) {
+    iCur = 0;
+    setCurrentTrack();
+  }
+  else iCur = localStorage.getItem('currentTrack');
+  return iCur;
+}
+
+function setCurrentTrack(){
+  localStorage.setItem('currentTrack', iCur);
 }
