@@ -56,12 +56,7 @@ html {
 
 body {
 	position: relative;
-	color: lightgray;	
 	height: 100%;
-	background-image: url("../assets/alb/0/0.jpg"); 
-	background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
 }
 
 .wrapper{
@@ -70,6 +65,14 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 10%;
+	/* filter: blur(10px);  */
+
+	color: lightgray;	
+	height: 100%;
+	background-image: url("../assets/alb/0/0.jpg"); 
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 body::before {

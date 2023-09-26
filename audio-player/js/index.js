@@ -65,7 +65,7 @@ function myinit(){
   artist.textContent = arr[iCur][2];
   song.textContent = arr[iCur][3];
   addList();
-  document.querySelector('body').style.backgroundImage = `url('assets/alb/${iCur}/0.jpg')`;
+  document.querySelector('.wrapper').style.backgroundImage = `url('assets/alb/${iCur}/0.jpg')`;
   document.querySelector('.alb').srcset = `assets/alb/${iCur}/1.jpg`;
   items = document.querySelectorAll('.item')
   items.forEach(link => link.addEventListener('click', (el) => {
@@ -180,7 +180,7 @@ function setVolume(el){
 }
 
 function playAudio() {
-  document.querySelector('body').style.backgroundImage = `url('assets/alb/${iCur}/0.jpg')`;
+  document.querySelector('.wrapper').style.backgroundImage = `url('assets/alb/${iCur}/0.jpg')`;
   document.querySelector('.alb').srcset = `assets/alb/${iCur}/1.jpg`;
   selectCurrentItem();
   if (isPause == false) {audio.currentTime = 0;}
