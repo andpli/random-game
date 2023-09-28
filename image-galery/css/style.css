@@ -126,6 +126,7 @@ body {
 	top: 12px;
 	width: 26px;
 	height: 26px;
+	color: transparent;
 	background-color: transparent;
 	border: none;
 }

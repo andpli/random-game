@@ -101,7 +101,7 @@ async function loadResults(str) {
                 }
                 request.send(null);
                 event.stopPropagation();
-            });
+           });
 
         });
       }
