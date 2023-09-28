@@ -113,6 +113,10 @@ body {
 	background-color: lightseagreen;
 }
 
+.input::placeholder {
+	color: rgb(152, 219, 203);;
+}
+
 .input:focus, .input:hover {
     box-shadow: 0 0 10px lightgoldenrodyellow; 
 }
@@ -137,9 +141,9 @@ body {
 }
 
 .search:hover, .clear:hover{
-		transform: scale(105%);
-		transition: 0.2s;
-		cursor: pointer;
+	transform: scale(105%);
+	transition: 0.2s;
+	cursor: pointer;
 }
 
 .images_container{
@@ -153,6 +157,7 @@ body {
 	justify-content: space-evenly;
 	row-gap: 30px;
 	border-radius: 5px;
+	text-align: center;
 }
 
 .image{
@@ -171,7 +176,7 @@ body {
 
 .image:hover {
 	.download{
-		opacity: 1;
+		opacity: 0.6;
 	}
 	transform: scale(102%);
 	transition: 0.5s;
@@ -190,7 +195,7 @@ body {
 }
 
 .download:hover {
-	transform: scale(105%);
+	transform: scale(110%);
 	transition: 0.5s;
 }
 
@@ -231,11 +236,15 @@ body {
 		justify-content: center;
 		gap: 10px;
 	}
+
 	.header {
 		height: 190px;
 	}
 
 	.input {
 		width: 250px;
-	  }
+	}
+	.fcontainer {
+		justify-content: center;
+	}
 }
