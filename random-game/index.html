@@ -12,16 +12,26 @@
     <header class="header" >
       <div class="header_container">
         <div class="logo">
-          <img src="assets/icons/logo-64.png" alt="logo">
-          <p>Random Game</p>
+          <img src="assets/icons/logo-64.png" alt="logo" id="scream">
+          <p>Random Game 1</p>
         </div>
+        <p class="time" style="color: white;">Осталось: 100 сек</p>
+        <p class="key" style="color: blue;"></p>
+        <p class="score" style="color: brown;">Убито: 0</p>
+        <input type="button" value="start" id="start">
       </div>
     </header>
     <main> 
       <div class="wrapper">
-        <div class="images_container">
-        <!--auto-->
+         <div class="images" style="display: none;">
+          <img src="assets/icons/white.png" alt="white" id="white">
+          <img src="assets/icons/blue.png" alt="blue" id="blue">
+          <img src="assets/icons/red.png" alt="red" id="red">
+          <img src="assets/icons/flash.png" alt="flash" id="flash">
         </div>
+         <canvas style="display: block;">
+
+         </canvas>
       </div>
     </main>
     <footer class="footer">
