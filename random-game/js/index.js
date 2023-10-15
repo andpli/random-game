@@ -7,9 +7,16 @@ console.log("Результаты последних 10 игр сохраняю�
 console.log("Анимации или звуки, или настройки игры. Баллы начисляются за любой из перечисленных пунктов +10");
 console.log("Очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10");
 */
-
-const str = '0123456789abcdefghijklmnopqrstuvwxyz';
-const keys = [...str];
+var modalRegister = document.querySelector("#modalRegister");
+var str = '';
+var keys = [];
+var modalBack = document.querySelector(".modal-background");
+var up = document.querySelector("#up");
+var ru = document.querySelector("#ru");
+var eng = document.querySelector("#eng");
+var ABC = '';
+getABC();
+ 
 let score = 0;
 let time = 0;
 let game = null;
@@ -36,7 +43,7 @@ class Ship {
 
     fire() {
       if (Math.floor(Math.random() * 50) != 0) return;  
-      let bomb = new Ball(this.x + this.width/2,this.y + this.height + 5, 'black');
+      let bomb = new Ball(this.x + this.width/2,this.y + this.height + 10, 'black');
       bomb.move(Math.floor(Math.random() * 2) + 1, myships);
     }
     pause(){
@@ -79,7 +86,7 @@ class Ship {
           }, 10); 
     }
 
-    kill(x,y) {
+    kill(x,y,step) {
         this.pause = true;
         context.drawImage(flash,x-20,y-20);
         setTimeout(() => {   
@@ -94,7 +101,7 @@ class Ship {
             context.fillRect(this.x-15, this.y-15, this.width+35, this.height+30);
             this.x= -70;
             this.pause = false;
-            this.step = (Math.floor(Math.random() * 3) + 1) * step;
+           // this.step = (Math.floor(Math.random() * 3) + 1) * step;
             console.log(`step4 ${this.step}`);
            // this.move(1);
         }, 1000);
@@ -104,17 +111,19 @@ class Ship {
 class MyShip extends Ship{
       fire() {
         if (this.pause) return;
-        let bomb = new EnemyBall(this.x + this.width/2,this.y+5, 'red');
+        let boom = new Audio('assets/audio/boom.mp3');
+        boom.play();
+        let bomb = new EnemyBall(this.x + this.width/2, this.y+5, 'red');
         bomb.move(-2, enemies);
       }
 
       move(step) {
               if (this.pause) return;
-              context.drawImage(white,this.x,this.y);
+              context.drawImage(white, this.x, this.y);
               this.x += step; 
               if (this.x <= 0) {this.x = 0};
-              if (this.x >= canvas.width-50) {this.x = canvas.width-50};
-              context.drawImage(this.color,this.x,this.y);
+              if (this.x >= canvas.width - 50) {this.x = canvas.width - 50};
+              context.drawImage(this.color, this.x, this.y);
  
             
       }
@@ -123,13 +132,13 @@ class MyShip extends Ship{
         time = 1;
         enemies.forEach((el) => el.stop());
         this.stop();
-        context.drawImage(flash,x-20,y-20);
+        context.drawImage(flash, x-20, y-20);
         setTimeout(() => {   
-            context.drawImage(flash,this.x,y-10);
-            context.drawImage(flash,this.x+20,y-10);
+            context.drawImage(flash, this.x, y-10);
+            context.drawImage(flash, this.x+20, y-10);
         }, 200);
 
-        clearAll(5000);
+       // clearAll(5000);
     }
 }
 
@@ -152,26 +161,28 @@ class Ball {
     move(step, ships) {
 
         context.beginPath();
-        context.fillStyle = this.color;
+        context.strokeStyle = this.color;
         context.arc(this.x, this.y, this.r, 0,  Math.PI *2 );
-        context.fill();
+        context.stroke();
 
         const moveId = setInterval(() => {
 
             context.beginPath();
             context.fillStyle = bgColor;
-            context.fillRect(this.x - this.r, this.y - this.r,this.r *2 , this.r *2 );
+            context.fillRect(this.x - 2* this.r, this.y - 2* this.r,this.r *4 , this.r *4 );
             this.y += step; 
             context.beginPath();
-            context.fillStyle = this.color;
+            context.strokeStyle = this.color;
             context.arc(this.x, this.y, this.r, 0,  Math.PI *2 );
-            context.fill();
+            context.stroke();
             
             for (let ship of ships){
                 if (( this.checkHeight(ship.y)  
                     && this.x >= ship.x && this.x <= ship.x + 50) && ship.pause != true)
                 {
                 ship.kill(this.x, this.y);
+                let bah = new Audio('assets/audio/bah.mp3');
+                bah.play();
                 clearInterval(moveId);
                 }
             }
@@ -192,6 +203,7 @@ class EnemyBall extends Ball{
 }
 
 function getRandomKey(){
+  if (ABC == 2) return;
   const randomIndex = Math.floor(Math.random() * keys.length);
   document.querySelector(".key").textContent = `Выстрел: ${keys[randomIndex]}`;
   return keys[randomIndex];
@@ -210,7 +222,8 @@ var blue = document.getElementById("blue");
 var red = document.getElementById("red");
 var white = document.getElementById("white");
 var flash = document.getElementById("flash");
-let key = getRandomKey();
+let arr = [];
+let key = '';
 
 let enemyShip = null;
 let playerShip = null;
@@ -218,12 +231,21 @@ let enemies = [];
 let myships = [];
 
 btn.addEventListener('click', () =>{
+    openModal(modalRegister); 
 
     if (time != 0) return;
 
+      
+  //const str = ;
+//0123456789
+    str = ABC == 0 ? 'abcdefghijklmnopqrstuvwxyz' : 'йфяцычувскамепинртгоьшлбщдзэхъ';
+    keys = [...str];
+    key = getRandomKey(); 
+    playerShip = null;
+    myships = [];
     score = 0; showScore(score);
-    time = 100; showTime(time);
-
+    time = 9; showTime(time);
+    enemies = [];
 /*
     enemyShip = new Ship(-50, 0, red);
     enemies.push(enemyShip);
@@ -252,24 +274,63 @@ btn.addEventListener('click', () =>{
     enemyShip1 = new Ship(-150, 60, red);
     enemies.push(enemyShip1);
     enemyShip1.move(1); */
-
-    playerShip = new MyShip(Math.floor(w / 2),h - enemyShip.height - 5, blue);
-    myships.push(playerShip);
+    if (myships.length === 0) {
+        playerShip = new MyShip(Math.floor(w / 2),h - enemyShip.height - 5, blue);
+        myships.push(playerShip);
+    } else myships.forEach((el) => el.show());
     game = setInterval(function(){
+        if (time == 11) {
+            let ten = new Audio('assets/audio/10.mp3');
+            ten.play();
+        }
 
         time--;
         showTime(time);
-     
+        
         if (time <= 0) { clearInterval(game); 
             enemies.forEach((el) => el.stop());
-            clearAll(1000); }
+            clearAll(1000); 
+            
+        }
      }, 1000);
 
 });
 
+
+let k = {};
 document.addEventListener('keydown', function(e){
     if (time == 0) return;
-  //  console.log(e);
+    k[e.code] = true;
+    if (e.key == 'ArrowUp' && ABC == 2){myships.forEach((el) => el.fire())}
+    if (e.key.toLowerCase() == key) {
+
+        playerShip.fire();
+        key = getRandomKey();
+    }
+});
+
+document.addEventListener('keyup', function(e){
+    k[e.code] = false;
+});
+
+function animate() {
+    requestAnimationFrame(animate);
+    
+    if (k.ArrowLeft) {myships.forEach((el) => el.move(-3))}
+    if (k.ArrowRight) {myships.forEach((el) => el.move(3))}
+ //   if (k.ArrowUp) {myships.forEach((el) => el.fire())}
+    
+
+    }
+    animate();
+    
+
+/*
+document.addEventListener('keydown', function(e){
+    console.log(e);
+
+    if (time == 0) return;
+
     if (e.key == 'ArrowLeft'){myships.forEach((el) => el.move(-5))}
     if (e.key == 'ArrowRight'){myships.forEach((el) => el.move(5))}
     if (e.key == 'ArrowUp'){myships.forEach((el) => el.fire())}
@@ -283,12 +344,17 @@ document.addEventListener('keydown', function(e){
         key = getRandomKey();
     }
 })
+*/
+
 
 function clearAll(delay){
+    saveResults();
     setTimeout(() => {   
         context.fillStyle = bgColor;
         context.fillRect(0, 0, w, h);
+        endgame();
     }, delay);
+
 }
 
 function showScore(value){
@@ -296,5 +362,107 @@ function showScore(value){
 }
 
 function showTime(value){
+   document.querySelector(".time").style.color =  (value < 11) ? 'red' : 'white';
     document.querySelector(".time").textContent = `Осталось: ${value} сек`;
+} 
+
+
+function clickOpen() {
+
+        openModal(modalRegister); 
+  
+  }
+
+  function openModal(modal) {
+    console.log(modal);
+    modal.classList.add("show");
+    modalBack.classList.add("show");
+
 }
+
+function endgame(){
+    modalRegister.classList.remove("show");
+    modalBack.classList.remove("show");
+}
+
+function getABC(){
+    console.log(1212);
+    if (localStorage.getItem('currentABC') === null) {
+      ABC = 0;
+      setABC();
+    }
+    else ABC = localStorage.getItem('currentABC');
+
+   setTimeout(() => {   
+        if (ABC == 0) {eng.click();} else if (ABC == 1) {ru.click();} else  up.click();
+    }, 10);
+
+    return ABC;
+  }
+  
+  function setABC(){
+    localStorage.setItem('currentABC', ABC);
+  }
+
+  eng.addEventListener('click', () =>{
+    ABC = 0;
+    console.log(333);
+    setABC();
+    eng.srcset = `assets/icons/eng-on.png`;
+    ru.srcset = `assets/icons/ru-off.png`;
+    up.srcset = `assets/icons/up-off.png`;
+  })
+
+  ru.addEventListener('click', () =>{
+    ABC = 1;
+    setABC();
+    ru.srcset = `assets/icons/ru-on.png`;
+    eng.srcset = `assets/icons/eng-off.png`;
+    up.srcset = `assets/icons/up-off.png`;
+  })
+
+  up.addEventListener('click', () =>{
+    ABC = 2;
+    setABC();
+    up.srcset = `assets/icons/up-on.png`;
+    eng.srcset = `assets/icons/eng-off.png`;
+    ru.srcset = `assets/icons/ru-off.png`;
+  })
+
+  function saveResults(){
+
+    let now = new Date();
+    
+    arr = JSON.parse(localStorage.getItem("shipsRes"));
+    if (arr == null) arr = [];
+    arr.push({ship: enemies.length, score: score,
+        date: formatDate(now), time : formatTime(now)  
+      });
+    localStorage.setItem("shipsRes", JSON.stringify(arr));
+  }
+
+
+  function formatDate(date) {
+
+    var dd = date.getDate();
+    if (dd < 10) dd = '0' + dd;
+  
+    var mm = date.getMonth() + 1;
+    if (mm < 10) mm = '0' + mm;
+  
+    var yy = date.getFullYear() % 100;
+    if (yy < 10) yy = '0' + yy;
+  
+    return dd + '.' + mm + '.' + yy;
+  }
+
+  function formatTime(date) {
+
+    var hh = date.getHours();
+    if (hh < 10) hh = '0' + hh;
+  
+    var mm = date.getMinutes();
+    if (mm < 10) mm = '0' + mm;
+  
+    return hh + ':' + mm;
+  }

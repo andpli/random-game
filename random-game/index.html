@@ -8,21 +8,41 @@
     <link rel="icon" type="image/png" href="assets/icons/icons-64.png">
 </head>
 <body>
+  <div class="modal-background"></div>
   <div class="wrapper">
     <header class="header" >
+
       <div class="header_container">
         <div class="logo">
           <img src="assets/icons/logo-64.png" alt="logo" id="scream">
-          <p>Random Game 1</p>
+          <p>Тренажер</p>
         </div>
         <p class="time" style="color: white;">Осталось: 100 сек</p>
         <p class="key" style="color: blue;"></p>
         <p class="score" style="color: brown;">Убито: 0</p>
-        <input type="button" value="start" id="start">
-        <input type="range" min="1" max="5" value="1" id="qty" style="width: 100px;">
+ 
       </div>
     </header>
     <main> 
+
+   
+      <div class="modal__register modal" id="modalRegister" onsubmit="return false;">
+        <div class="level" style="display: flex; align-items: center;">
+          <img src="assets/icons/1.png" alt="min" style="width: 50px;">
+          <input type="range" min="1" max="5" value="1" id="qty" style="width: 100px;">
+          <img src="assets/icons/5.png" alt="max" style="width: 50px;">
+        </div>
+
+        <img src="assets/icons/left-off.png" alt="left" id="left" style="width: 50px;">
+        <img src="assets/icons/right-off.png" alt="right" id="right" style="width: 50px;">
+        <div class="lang_buttons">
+          <img src="assets/icons/eng-off.png" alt="eng" id="eng" class="lang" style="width: 50px;">
+          <img src="assets/icons/ru-off.png" alt="ru" id="ru" class="lang" style="width: 50px;">
+          <img src="assets/icons/up-off.png" alt="up" id="up" class="lang" style="width: 50px;">
+        </div>
+
+        <input type="button" value="Начать" id="start" style="width: 70px;">
+      </div>
       <div class="wrapper">
          <div class="images" style="display: none;">
           <img src="assets/icons/white.png" alt="white" id="white">
@@ -45,6 +65,7 @@
       </div>
     </footer>
   </div>
+
   <script src="js/index.js"></script>
 </body>
 </html>
