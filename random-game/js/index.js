@@ -60,9 +60,9 @@ class Ship {
     }
 
     move(step) {
-       console.log(`step1 ${step}`);
+     //  console.log(`step1 ${step}`);
         this.step = (Math.floor(Math.random() * 3) + 1) * step;
-        console.log(`step2 ${this.step}`);
+       // console.log(`step2 ${this.step}`);
         this.moveId = setInterval(() => {
             if (this.pause) return;
             this.fire();
@@ -79,7 +79,7 @@ class Ship {
                 if (this.x < -150 && step < 0) { 
                     this.x= w+70;
                     this.step = (Math.floor(Math.random() * 3) + 1) * step;
-                    console.log(`${this.x} step3 ${this.step}`);
+                  //  console.log(`${this.x} step3 ${this.step}`);
                 } 
 
 
@@ -102,7 +102,7 @@ class Ship {
             this.x= -70;
             this.pause = false;
            // this.step = (Math.floor(Math.random() * 3) + 1) * step;
-            console.log(`step4 ${this.step}`);
+          //  console.log(`step4 ${this.step}`);
            // this.move(1);
         }, 1000);
     }
@@ -223,18 +223,25 @@ var red = document.getElementById("red");
 var white = document.getElementById("white");
 var flash = document.getElementById("flash");
 let arr = [];
+showResults();
 let key = '';
 
 let enemyShip = null;
 let playerShip = null;
 let enemies = [];
 let myships = [];
+var width = window.innerWidth;
+var height = window.innerHeight;
 
 btn.addEventListener('click', () =>{
     openModal(modalRegister); 
 
     if (time != 0) return;
 
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    window.resizable = false;
       
   //const str = ;
 //0123456789
@@ -244,7 +251,7 @@ btn.addEventListener('click', () =>{
     playerShip = null;
     myships = [];
     score = 0; showScore(score);
-    time = 9; showTime(time);
+    time = 99; showTime(time);
     enemies = [];
 /*
     enemyShip = new Ship(-50, 0, red);
@@ -279,7 +286,7 @@ btn.addEventListener('click', () =>{
         myships.push(playerShip);
     } else myships.forEach((el) => el.show());
     game = setInterval(function(){
-        if (time == 11) {
+        if (time == 12) {
             let ten = new Audio('assets/audio/10.mp3');
             ten.play();
         }
@@ -349,6 +356,7 @@ document.addEventListener('keydown', function(e){
 
 function clearAll(delay){
     saveResults();
+
     setTimeout(() => {   
         context.fillStyle = bgColor;
         context.fillRect(0, 0, w, h);
@@ -370,23 +378,30 @@ function showTime(value){
 function clickOpen() {
 
         openModal(modalRegister); 
+      
   
   }
 
   function openModal(modal) {
-    console.log(modal);
     modal.classList.add("show");
     modalBack.classList.add("show");
-
+   
 }
 
 function endgame(){
+    alert("Ваш результат: " + score + (score == 0 ? " - Увы :( Попробуйте еще раз." : score > 10 ? " - Отлично!" : score > 5 ? " - Хорошая попытка!" : " - Могло быть и лучше :("))
     modalRegister.classList.remove("show");
     modalBack.classList.remove("show");
+    document.querySelector(".time").textContent = ``;
+    document.querySelector(".score").textContent = ``;
+    document.querySelector(".key").textContent = ``;
+
+   
+
+
 }
 
 function getABC(){
-    console.log(1212);
     if (localStorage.getItem('currentABC') === null) {
       ABC = 0;
       setABC();
@@ -406,7 +421,6 @@ function getABC(){
 
   eng.addEventListener('click', () =>{
     ABC = 0;
-    console.log(333);
     setABC();
     eng.srcset = `assets/icons/eng-on.png`;
     ru.srcset = `assets/icons/ru-off.png`;
@@ -439,6 +453,7 @@ function getABC(){
         date: formatDate(now), time : formatTime(now)  
       });
     localStorage.setItem("shipsRes", JSON.stringify(arr));
+    showResults();
   }
 
 
@@ -466,3 +481,71 @@ function getABC(){
   
     return hh + ':' + mm;
   }
+
+  window.addEventListener('resize', (e) => {
+
+    window.resizeTo(width, height);
+  //  if (time > 1 && time < 99) {
+  //    let isReload = confirm("Для корректной работы необходимо обновить страницу, текущий раунд будет потерян, согласны?");
+   //   if (isReload) location.reload();
+ //   }
+  });
+
+    
+  window.onresize = function () {
+
+   // if (width < minWidth || width > maxWidth || height < minHeight || height > maxHeight) {
+  
+    window.resizeTo(width, height);
+   // }
+    };
+
+    function showResults(){
+      arr = JSON.parse(localStorage.getItem("shipsRes"));
+
+      let list = document.querySelector("ul");
+      while (list.firstChild) {
+        list.removeChild(list.firstChild);
+      }
+      let newNode;
+      let elemText;
+      let newSpan;
+      let spanText;
+      let lj = -1;
+      if (arr)
+      for (let li = arr.length - 1; li >= 0; li--){
+        lj++;
+        if (lj > 9) return;
+        newNode = document.createElement("li");
+        newNode.classList.add('item');
+       
+      //  elemText = document.createTextNode((li > 8 ? lj + '.' : '  ' + lj + '.' ));
+      //  newNode.appendChild(elemText);
+        newSpan = document.createElement('span');
+        newSpan.classList.add('date');
+        spanText = document.createTextNode(arr[li].date);
+        newSpan.appendChild(spanText);
+        newNode.appendChild(newSpan);
+
+        newSpan = document.createElement('span');
+        newSpan.classList.add('time');
+        spanText = document.createTextNode(arr[li].time);
+        newSpan.appendChild(spanText);
+        newNode.appendChild(newSpan);
+/*
+        newSpan = document.createElement('span');
+        newSpan.classList.add('ship');
+        spanText = document.createTextNode(arr[li].ship);
+        newSpan.appendChild(spanText);
+        newNode.appendChild(newSpan);
+*/
+        newSpan = document.createElement('span');
+        newSpan.classList.add('score');
+        spanText = document.createTextNode(arr[li].score);
+        newSpan.appendChild(spanText);
+        newNode.appendChild(newSpan);
+
+        list.appendChild(newNode);
+      }
+
+    }

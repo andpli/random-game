@@ -17,9 +17,9 @@
           <img src="assets/icons/logo-64.png" alt="logo" id="scream">
           <p>Тренажер</p>
         </div>
-        <p class="time" style="color: white;">Осталось: 100 сек</p>
+        <p class="time" style="color: white;"></p>
         <p class="key" style="color: blue;"></p>
-        <p class="score" style="color: brown;">Убито: 0</p>
+        <p class="score" style="color: brown;"></p>
  
       </div>
     </header>
@@ -27,22 +27,42 @@
 
    
       <div class="modal__register modal" id="modalRegister" onsubmit="return false;">
-        <div class="level" style="display: flex; align-items: center;">
-          <img src="assets/icons/1.png" alt="min" style="width: 50px;">
-          <input type="range" min="1" max="5" value="1" id="qty" style="width: 100px;">
-          <img src="assets/icons/5.png" alt="max" style="width: 50px;">
+        <div class="rules" style="margin: 20px auto; width: 80%; font-size: medium; color: #000;">
+        Клавиатурный тренажер. <br><br>
+        Цель игры: за отведенное время убить максимальное количество вражеских кораблей, параллельно запоминая расположение букв на клавиатуре. <br><br>
+        В настройках можно выбрать число вражеских кораблей и раскладку клавиатуры. Корабль перемещается стрелками "Влево" и "Вправо", а стреляет когда нажата необходимая клавиша (отображается сверху и меняется после каждого выстрела). В настройках также можно выбрать клавишу "Вверх" для стрельбы, и существенно увеличить свой рекорд. <br><br>
+        Игра заканчивается, если вражеский корабль попал в ваш и/или закончилось время. <hr>
         </div>
+        <div class="setup" style="display: flex; justify-content: space-around;">
+        <div class="left">           
+          <div style="font-size: large; color: #000;">Количество противников:</div>
+          <div class="level" style="display: flex; align-items: center; ">
 
-        <img src="assets/icons/left-off.png" alt="left" id="left" style="width: 50px;">
-        <img src="assets/icons/right-off.png" alt="right" id="right" style="width: 50px;">
-        <div class="lang_buttons">
-          <img src="assets/icons/eng-off.png" alt="eng" id="eng" class="lang" style="width: 50px;">
-          <img src="assets/icons/ru-off.png" alt="ru" id="ru" class="lang" style="width: 50px;">
-          <img src="assets/icons/up-off.png" alt="up" id="up" class="lang" style="width: 50px;">
+            <img src="assets/icons/1.png" alt="min" style="width: 50px;">
+            <input type="range" min="1" max="5" value="1" id="qty" style="width: 100px;">
+            <img src="assets/icons/5.png" alt="max" style="width: 50px;">
+          </div>
+
+        <!--  <img src="assets/icons/left-off.png" alt="left" id="left" style="width: 50px;">
+          <img src="assets/icons/right-off.png" alt="right" id="right" style="width: 50px;"> -->
+          <div style="font-size: large; color: #000; padding: 10px 0;">Выбор языка:</div>
+
+          <div class="lang_buttons">
+            <img src="assets/icons/eng-off.png" alt="eng" id="eng" class="lang" style="width: 50px;">
+            <img src="assets/icons/ru-off.png" alt="ru" id="ru" class="lang" style="width: 50px;">
+            <img src="assets/icons/up-off.png" alt="up" id="up" class="lang" style="width: 50px;">
+          </div>
         </div>
-
-        <input type="button" value="Начать" id="start" style="width: 70px;">
+        <div class="results"> Последние результаты <hr>
+          <ul style="display: flex; flex-direction: column;"></ul>
+        </div>
       </div>
+        <div class="str" style="margin: 0 auto;">
+          <input type="button" value="Начать" id="start" style="width: 70px;">
+        </div>
+
+      </div>
+
       <div class="wrapper">
          <div class="images" style="display: none;">
           <img src="assets/icons/white.png" alt="white" id="white">

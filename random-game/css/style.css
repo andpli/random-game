@@ -65,13 +65,17 @@ body {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	 justify-content: space-between; 	
+	justify-content: space-between; 	
 	gap: 40px;
 }
 
 .header{
 	background: lightseagreen;
 	height: 90px;
+}
+
+p {
+  font-size: large;
 }
 
 .logo{
@@ -91,6 +95,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	align-items: center;
 	padding: 20px 0;
 }
 
@@ -127,7 +132,7 @@ body {
 }	 
 
 @media  (max-width:737px) {
-	.header_container {
+/*	.header_container {
 		justify-content: center;
 		gap: 10px;
 	}
@@ -135,7 +140,7 @@ body {
 	.header {
 		height: 190px;
 	}
-
+*/
 	.fcontainer {
 		justify-content: center;
 	}
@@ -146,7 +151,7 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: #0f070766;
+    background-color: transparent;
     z-index: 7;
     transition: .3s;
     opacity: 1;
@@ -155,7 +160,7 @@ body {
 .modal {
     display: flex; 
 	width: 100%;
-	height: 100%;
+	height: 80%;
     z-index: 8;
     position: fixed;
     top: 50%;
@@ -217,4 +222,14 @@ input[type=range]::-moz-range-thumb {
 	box-shadow: -200px  0 0 200px  slategray; 
 	padding: 0px;
 	margin: 0px;
+}
+
+.results{
+	font-size: large;
+	color: black;
+}
+
+li{
+	display: flex;
+	justify-content: space-between;
 }
