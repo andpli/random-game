@@ -1,0 +1,235 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/******************************************************/
+html {
+    box-sizing: border-box;
+	height: 100%;
+	color: lightgoldenrodyellow;
+    font-size: 40px; 
+}
+
+body {
+	height: 100%;
+	background: lightgoldenrodyellow;
+}
+
+.wrapper{
+	min-width: 400px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between; 	
+	gap: 40px;
+}
+
+.header{
+	background: lightseagreen;
+	height: 90px;
+}
+
+p {
+  font-size: large;
+}
+
+.logo{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.logo img{
+	width: 45px;
+	height: 45px;
+}
+
+.header_container{
+	margin: 0 auto;
+	width: 95%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 0;
+}
+
+.fcontainer{
+	display: flex;
+	gap: 20px;
+	height: 50px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+	background: lightseagreen;
+	padding:  5px;
+}
+
+.fcontainer div{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	align-items: center;
+}
+
+.git_img{
+	height: 25px;
+}
+
+.rs_img {
+	height: 50px;
+}
+
+.rs_img:hover, .git_img:hover{
+	transform: scale(110%);
+	transition: 0.4s;
+}	 
+
+@media  (max-width:737px) {
+/*	.header_container {
+		justify-content: center;
+		gap: 10px;
+	}
+
+	.header {
+		height: 190px;
+	}
+*/
+	.fcontainer {
+		justify-content: center;
+	}
+}
+
+.modal-background {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 10%;
+    background-color: transparent;
+    z-index: 7;
+    transition: .3s;
+    opacity: 1;
+}
+
+.modal {
+    display: flex; 
+	width: 100%;
+	height: 80%;
+    z-index: 8;
+    position: fixed;
+    top: 50%;
+	margin: auto;
+    padding: 10px;
+    align-self: center;
+    background-color: #fff;
+    flex-direction: column;
+    opacity: 1;
+    transition: opacity .3s;
+    transform:  translateY(-50%);
+}
+.show {
+	opacity: 0; 
+	display: none;
+ }
+
+ .lang {
+	cursor: pointer;
+ }
+
+ 
+input[type=range] {
+	width: 300px; 
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	overflow: hidden;
+	height: 7px;
+}
+	
+input[type=range]::-webkit-slider-runnable-track {
+	height: 7px;
+	background-color: slategray; 
+}
+	
+input[type=range]::-webkit-slider-thumb {
+	background: black;
+	cursor: pointer;
+	width:15px;
+	height: 15px;
+	-webkit-appearance: none;
+	margin-top: -4px;
+	box-shadow: -200px  0 0 200px  slategray;
+
+}
+
+input[type=range]::-moz-range-track {
+	height: 7px;
+	background-color: slategray
+}
+
+input[type=range]::-moz-range-thumb {
+	background: black;
+	cursor: pointer;
+	height: 7px;
+	border-radius:0;
+	box-shadow: -200px  0 0 200px  slategray; 
+	padding: 0px;
+	margin: 0px;
+}
+
+.results{
+	font-size: large;
+	color: black;
+}
+
+li{
+	display: flex;
+	justify-content: space-between;
+}

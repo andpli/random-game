@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Морской Бой</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/icons/icons-64.png">
+</head>
+<body>
+  <div class="modal-background"></div>
+  <div class="wrapper">
+    <header class="header" >
+
+      <div class="header_container">
+        <div class="logo">
+          <img src="assets/icons/logo-64.png" alt="logo" id="scream">
+          <p>Морской Бой</p>
+        </div>
+        <p class="time" style="color: white;"></p>
+        <p class="key" style="color: blue;"></p>
+        <p class="score" style="color: brown;"></p>
+ 
+      </div>
+    </header>
+    <main> 
+
+   
+      <div class="modal__register modal" id="modalRegister" onsubmit="return false;">
+        <div class="rules" style="margin: 20px auto; width: 80%; font-size: medium; color: #000;">
+        Клавиатурный тренажер. <br><br>
+        Цель игры: за отведенное время убить максимальное количество вражеских кораблей, параллельно запоминая расположение букв на клавиатуре. <br><br>
+        В настройках можно выбрать число вражеских кораблей и раскладку клавиатуры. Корабль перемещается стрелками "Влево" и "Вправо", а стреляет когда нажата необходимая клавиша (отображается сверху и меняется после каждого выстрела). В настройках также можно выбрать клавишу "Вверх" для стрельбы, и существенно увеличить свой рекорд. <br><br>
+        Игра заканчивается, если вражеский корабль попал в ваш и/или закончилось время. <hr>
+        </div>
+        <div class="setup" style="display: flex; justify-content: space-around;">
+        <div class="left">           
+          <div style="font-size: large; color: #000;">Количество противников:</div>
+          <div class="level" style="display: flex; align-items: center; ">
+
+            <img src="assets/icons/1.png" alt="min" style="width: 50px;">
+            <input type="range" min="1" max="5" value="1" id="qty" style="width: 100px;">
+            <img src="assets/icons/5.png" alt="max" style="width: 50px;">
+          </div>
+
+        <!--  <img src="assets/icons/left-off.png" alt="left" id="left" style="width: 50px;">
+          <img src="assets/icons/right-off.png" alt="right" id="right" style="width: 50px;"> -->
+          <div style="font-size: large; color: #000; padding: 10px 0;">Выбор языка:</div>
+
+          <div class="lang_buttons">
+            <img src="assets/icons/eng-off.png" alt="eng" id="eng" class="lang" style="width: 50px;">
+            <img src="assets/icons/ru-off.png" alt="ru" id="ru" class="lang" style="width: 50px;">
+            <img src="assets/icons/up-off.png" alt="up" id="up" class="lang" style="width: 50px;">
+          </div>
+        </div>
+        <div class="results"> Последние результаты <hr>
+          <ul style="display: flex; flex-direction: column;"></ul>
+        </div>
+      </div>
+        <div class="str" style="margin: 0 auto;">
+          <input type="button" value="Начать" id="start" style="width: 70px;">
+        </div>
+
+      </div>
+
+      <div class="wrapper">
+         <div class="images" style="display: none;">
+          <img src="assets/icons/white.png" alt="white" id="white">
+          <img src="assets/icons/blue.png" alt="blue" id="blue">
+          <img src="assets/icons/red.png" alt="red" id="red">
+          <img src="assets/icons/flash.png" alt="flash" id="flash">
+        </div>
+         <canvas style="display: block;">
+
+         </canvas>
+      </div>
+    </main>
+    
+    <footer class="footer">
+      <div class="fcontainer">
+        <div>
+          <span>2023</span>
+          <a href="https://github.com/andpli"><img class="git_img" src="assets/icons/git.svg" alt="git"></a>
+        </div>
+        <a href="https://rs.school/js-stage0/"><img class="rs_img" src="assets/icons/rs_school_js.svg" alt="rsschool"></a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+</html>
